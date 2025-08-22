@@ -84,17 +84,15 @@
       <div class="glass p-5">
         <h2 class="text-2xl neon-text mb-2">About</h2>
         <ul class="text-sm space-y-1">
-          <li>Stack:☕Java  
- 📕HTML ( with CSS)<img src="https://img.shields.io/badge/-HTML5-DE5934?logo=HTML5&logoColor=white&style=flat">&nbsp;
-<img src="https://img.shields.io/badge/-CSS3-2275B2?logo=CSS3&logoColor=white&style=flat"> &nbsp;
- 🗽Python <img src="https://img.shields.io/badge/-python-437CAC?logo=python&logoColor=white&style=flat">
- 🛠 Gitlab 
- 🚀 Git and Github desktop support  
- 🏞 Bitbucket 
-⚓Visual Studio Code <img src="https://img.shields.io/badge/-Visual%20Studio%20Code-25AEF4?logo=visualstudio&logoColor=white&style=flat">
+          <li>Stack:☕Java <br> 
+ 📕HTML ( with CSS)<br>
+ 🗽Python<br> 
+ 🛠 Gitlab <br>
+ 🚀 Git and Github desktop support <br> 
+ 🏞 Bitbucket <br>
+⚓Visual Studio Code <br>
 🎨Passion & Determination</li>
-          <li>Projects: Football_Game, Number-Guessing-Game</li>
-          <li>Upcoming: Beauty_Java_Suite</li>
+         
         </ul>
       </div>
 
