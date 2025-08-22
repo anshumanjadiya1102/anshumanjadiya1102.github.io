@@ -107,15 +107,6 @@
       box-shadow:0 0 30px rgba(0,255,204,0.3);
     }
 
-    /* Starfield Background */
-    #stars,#stars2,#stars3 {
-      position:fixed;width:100%;height:100%;display:block;top:0;left:0;z-index:-10;
-    }
-    #stars {background:transparent url('https://www.script-tutorials.com/demos/360/images/stars.png') repeat top center;animation:moveStars 200s linear infinite;}
-    #stars2{background:transparent url('https://www.script-tutorials.com/demos/360/images/stars2.png') repeat top center;animation:moveStars 400s linear infinite;}
-    #stars3{background:transparent url('https://www.script-tutorials.com/demos/360/images/stars3.png') repeat top center;animation:moveStars 600s linear infinite;}
-    @keyframes moveStars {from{background-position:0 0;}to{background-position:0 -10000px;}}
-
     /* Cookie Modal */
     .cookie-modal {
       background:rgba(20,20,30,0.95);
@@ -126,13 +117,24 @@
       padding:1.5rem;
       box-shadow:0 0 30px rgba(0,255,204,0.3);
     }
+
+    /* Canvas Background */
+    #spaceCanvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -20;
+      background: radial-gradient(ellipse at center, #05010f 0%, #000000 100%);
+    }
   </style>
 </head>
 <body class="relative">
-  <div id="stars"></div><div id="stars2"></div><div id="stars3"></div>
+
+  <!-- Galaxy Background -->
+  <canvas id="spaceCanvas"></canvas>
 
   <!-- Hero -->
-  <section class="text-center py-20">
+  <section class="text-center py-20 relative z-10">
     <h1 class="text-5xl md:text-7xl glitch neon-text" data-text="JavaBeauty-Suite">JavaBeauty-Suite</h1>
     <p class="mt-6 text-lg text-gray-300">Futuristic Java-powered tools and open source projects.</p>
     <div class="mt-8 flex justify-center gap-4">
@@ -143,14 +145,28 @@
   </section>
 
   <!-- About + Org -->
-  <section class="max-w-6xl mx-auto p-8 grid md:grid-cols-2 gap-8">
+  <section class="max-w-6xl mx-auto p-8 grid md:grid-cols-2 gap-8 relative z-10">
     <div class="glass-card">
       <h2 class="text-3xl neon-text mb-4">About Me</h2>
-      <p>I’m <strong>Anshuman Jadiya</strong>, passionate about open-source projects built with Java and modern tools.</p>
+      <p>I’m <strong>Anshuman Jadiya</strong>, passionate about open-source projects built with Java and modern tools.
+      </p>
       <ul class="list-disc list-inside mt-4 space-y-2">
         <li>Stack: Java, Python, HTML/CSS, GitHub, GitLab, Bitbucket</li>
         <li>Projects: Football_Game, Number-Guessing-Game, Hello-World</li>
         <li>Upcoming: Beauty_Java_Suite</li>
+        <li> <p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=anshumanjadiya1102&style=dracula" alt="anshumanjadiya1102" /></a> </p>
+
+<p align="centre">
+</p>
+
+<h3 align="left">Languages and Tools:</h3>
+<p align="left"> <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/> </a> <a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a> <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> </a> <a href="https://www.java.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="java" width="40" height="40"/> </a> <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a> </p>
+
+<p><img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=anshumanjadiya1102&show_icons=true&locale=en&layout=compact" alt="anshumanjadiya1102" /></p>
+
+<p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=anshumanjadiya1102&show_icons=true&locale=en" alt="anshumanjadiya1102" /></p>
+
+<p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=anshumanjadiya1102&" alt="anshumanjadiya1102" /></p> </li>
       </ul>
     </div>
     <div class="glass-card">
@@ -165,18 +181,18 @@
   </section>
 
   <!-- Importance of Java -->
-  <section class="max-w-4xl mx-auto p-8 text-center">
+  <section class="max-w-4xl mx-auto p-8 text-center relative z-10">
     <h2 class="text-4xl neon-text mb-6">Why Java Matters 🚀</h2>
     <p class="text-lg text-gray-300">Java powers enterprise, banking, Android apps, cloud computing, and more. Its portability, stability, and scalability make it a cornerstone of modern IT.</p>
   </section>
 
   <!-- Footer -->
-  <footer class="text-center py-6 text-gray-400">
+  <footer class="text-center py-6 text-gray-400 relative z-10">
     © 2025 JavaBeauty-Suite | Built by Anshuman Jadiya
   </footer>
 
   <!-- Cookie Modal -->
-  <div id="cookieModal" class="fixed inset-0 flex items-center justify-center hidden bg-black/70">
+  <div id="cookieModal" class="fixed inset-0 flex items-center justify-center hidden bg-black/70 z-50">
     <div class="cookie-modal">
       <h3 class="text-xl neon-text mb-4">Cookie Preferences</h3>
       <label class="block mb-2"><input type="checkbox" checked disabled> Functional (Required)</label>
@@ -186,10 +202,88 @@
     </div>
   </div>
 
+  <!-- Background Script -->
   <script>
+    const canvas = document.getElementById("spaceCanvas");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let stars = [];
+    let shootingStars = [];
+    let nebulas = [];
+
+    function random(min,max){return Math.random()*(max-min)+min;}
+
+    // Stars
+    for(let i=0;i<300;i++){
+      stars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.5,o:Math.random()});
+    }
+
+    // Nebulas
+    const nebulaColors=["hsla(280,70%,60%,0.15)","hsla(200,80%,60%,0.15)","hsla(320,70%,60%,0.15)"];
+    for(let i=0;i<5;i++){
+      nebulas.push({x:random(0,canvas.width),y:random(0,canvas.height),r:random(200,500),color:nebulaColors[i%nebulaColors.length],dx:random(-0.2,0.2),dy:random(-0.2,0.2)});
+    }
+
+    function drawStars(){
+      ctx.fillStyle="white";
+      stars.forEach(s=>{
+        ctx.globalAlpha = s.o + Math.sin(Date.now()/1000 + s.x)*0.3;
+        ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fill();
+      });
+    }
+
+    // Shooting stars
+    function spawnShootingStar(){
+      shootingStars.push({x:Math.random()*canvas.width,y:0,len:random(80,150),speed:random(8,15),opacity:1});
+    }
+    setInterval(spawnShootingStar,4000);
+
+    function drawShootingStars(){
+      for(let i=0;i<shootingStars.length;i++){
+        let s=shootingStars[i];
+        ctx.strokeStyle=`rgba(255,255,255,${s.opacity})`;
+        ctx.lineWidth=2;
+        ctx.beginPath();
+        ctx.moveTo(s.x,s.y);
+        ctx.lineTo(s.x-s.len,s.y+s.len);
+        ctx.stroke();
+        s.x+=-s.speed; s.y+=s.speed; s.opacity-=0.01;
+        if(s.opacity<=0) shootingStars.splice(i,1);
+      }
+    }
+
+    function drawNebulas(){
+      nebulas.forEach(n=>{
+        let g=ctx.createRadialGradient(n.x,n.y,0,n.x,n.y,n.r);
+        g.addColorStop(0,n.color); g.addColorStop(1,"transparent");
+        ctx.fillStyle=g; ctx.beginPath(); ctx.arc(n.x,n.y,n.r,0,Math.PI*2); ctx.fill();
+        n.x+=n.dx; n.y+=n.dy;
+        if(n.x<-n.r) n.x=canvas.width+n.r;
+        if(n.y<-n.r) n.y=canvas.height+n.r;
+        if(n.x>canvas.width+n.r) n.x=-n.r;
+        if(n.y>canvas.height+n.r) n.y=-n.r;
+      });
+    }
+
+    function animate(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      drawNebulas();
+      drawStars();
+      drawShootingStars();
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    window.addEventListener("resize",()=>{
+      canvas.width=window.innerWidth;
+      canvas.height=window.innerHeight;
+    });
+
+    // Cookie Modal
     setTimeout(()=>{document.getElementById('cookieModal').classList.remove('hidden')},2000);
     function acceptCookies(){document.getElementById('cookieModal').classList.add('hidden');}
   </script>
 </body>
 </html>
-
