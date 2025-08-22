@@ -24,7 +24,7 @@ Here are some ideas to get you started:-->
  - SO, CHECK OUT : https://github.com/anshumanjadiya1102/Football_Game
 - ## 📫 How to reach me:
 You can contact me through Gmail: anshuman.jadiya03@gmail.com                                                                                                                              
-Support me on Github: https://github.com/anshumanjadiya1102                                                                                                                                
+Support me on Github:<a> https://github.com/anshumanjadiya1102  </a>                                                                                                                              
 Follow me on Gitlab: https://gitlab.com/anshumanjadiya1102 <br>
 Support me on Bitbucket: https://bitbucket.org/anshumanjadiya1102/workspace/overview/
 
