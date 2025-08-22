@@ -151,16 +151,15 @@
       <p>I’m <strong>Anshuman Jadiya</strong>, passionate about open-source projects built with Java and modern tools.
       </p>
       <ul class="list-disc list-inside mt-4 space-y-2">
-        <li> - ☕Java (main language) ![Java](https://img.shields.io/badge/Java-000000?style=for-the-badge&logo=openjdk&logoColor=white)
+        <li> - ☕Java (main language)
  - 📕HTML (side language with CSS)<img src="https://img.shields.io/badge/-HTML5-DE5934?logo=HTML5&logoColor=white&style=flat">&nbsp;
-<img src="https://img.shields.io/badge/-CSS3-2275B2?logo=CSS3&logoColor=white&style=flat"> &nbsp;
- - 🗽Python (use will increase as followers will increase) <img src="https://img.shields.io/badge/-python-437CAC?logo=python&logoColor=white&style=flat">
+ - 🗽Python <img src="https://img.shields.io/badge/-python-437CAC?logo=python&logoColor=white&style=flat">
  - 🛠 Gitlab (side support and CI/CD)
- - 🚀 Git and Github desktop support (Version control)  ![Git](https://img.shields.io/badge/-Git-F05032?style=flat-square&logo=git&logoColor=white)
+ - 🚀 Git and Github desktop support (Version control)
  - 🏞 Bitbucket (with Jira)
  - ⚓Visual Studio Code <img src="https://img.shields.io/badge/-Visual%20Studio%20Code-25AEF4?logo=visualstudio&logoColor=white&style=flat">
  - 🎨Passion & Determination</li>
- <img src="https://raw.githubusercontent.com/sanjay-kv/sanjay-kv/main/Assets/illustration.png" min-width="300px" max-width="300px" width="350px" align="right"> 
+ 
 
         <li>Upcoming: Beauty_Java_Suite</li>
         <li> <p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=anshumanjadiya1102&style=dracula" alt="anshumanjadiya1102" /></a> </p>
