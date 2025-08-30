@@ -1,0 +1,297 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Java-Beauty-Suite ☕</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#061839; --glass:rgba(255,255,255,.06);
+      --glow1:#4cc9f0; --glow2:#3a86ff; --glow3:#8338ec; --glow4:#ff006e; --glow5:#ff7b00;
+    }
+    html,body{height:100%}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:#eaf2ff;overflow-x:hidden;scroll-behavior:smooth}
+    /* Nebula backdrop */
+    body::before{
+      content:"";position:fixed;inset:0;z-index:-3;
+      background:
+        radial-gradient(1200px 800px at 15% 20%, rgba(0,90,210,.25), transparent 60%),
+        radial-gradient(1000px 700px at 85% 80%, rgba(160,0,255,.22), transparent 60%),
+        radial-gradient(900px 600px at 70% 15%, rgba(255,80,0,.15), transparent 60%),
+        #071530;
+      filter:saturate(115%);
+    }
+    /* Stars canvas */
+    #stars, #constel {position:fixed;inset:0;z-index:-2;pointer-events:none}
+    /* Shooting stars */
+    .shoot{position:fixed;top:-120px;width:2px;height:110px;background:linear-gradient(180deg,rgba(255,255,255,.95),transparent);opacity:.9;filter:drop-shadow(0 0 6px #fff);transform:rotate(45deg);z-index:-1;animation:shoot 7s linear infinite}
+    .shoot:nth-child(2){left:20%;animation-delay:2s}.shoot:nth-child(3){left:60%;animation-delay:4.5s}.shoot:nth-child(4){left:35%;animation-delay:6.5s}
+    @keyframes shoot{0%{transform:translate(-30vw,-10vh) rotate(45deg);opacity:0}10%{opacity:1}100%{transform:translate(100vw,90vh) rotate(45deg);opacity:0}}
+
+    /* Neon text */
+    .neon{font-family:'Orbitron',sans-serif;color:var(--glow1);text-shadow:0 0 10px var(--glow1),0 0 20px var(--glow2),0 0 34px var(--glow3)}
+    /* Cards + moving borders */
+    .card{position:relative;background:var(--glass);border-radius:22px;padding:1.75rem;border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(12px);transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s}
+    .card:hover{transform:translateY(-8px) scale(1.03) rotateX(4deg);box-shadow:0 18px 48px -10px rgba(76,201,240,.25)}
+    .animated-border::before{
+      content:"";position:absolute;inset:0;padding:2px;border-radius:22px;
+      background:linear-gradient(270deg,var(--glow5),var(--glow1),var(--glow2),var(--glow3),var(--glow4),var(--glow5));
+      background-size:800% 800%;animation:borderMove 14s linear infinite;
+      -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite:xor; mask-composite:exclude;pointer-events:none
+    }
+    @keyframes borderMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+    /* Badges */
+    .badge{display:inline-flex;align-items:center;gap:.4rem;padding:.35rem .65rem;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);backdrop-filter:blur(6px);font-size:.8rem}
+    .badge i{font-style:normal;opacity:.9}
+
+    /* Nav */
+    nav.nav{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:50;background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.12);padding:.35rem .75rem;border-radius:999px;backdrop-filter:blur(10px)}
+    nav.nav a{color:#dbeaff;margin:0 .6rem;font-weight:600;transition:color .25s, text-shadow .25s}
+    nav.nav a:hover{color:var(--glow1);text-shadow:0 0 10px var(--glow1)}
+    /* Quick Jump */
+    .jump{position:fixed;right:18px;bottom:18px;z-index:40}
+    .jump select{background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.15);color:#eaf2ff;border-radius:14px;padding:.6rem .8rem}
+
+    /* Cursor particles */
+    .cursor-p{position:fixed;width:8px;height:8px;border-radius:50%;background:radial-gradient(circle,var(--glow1),transparent 70%);pointer-events:none;transform:translate(-50%,-50%);animation:fade .9s ease-out forwards;mix-blend-mode:screen;filter:blur(.2px)}
+    @keyframes fade{from{opacity:1;transform:translate(-50%,-50%) scale(1)}to{opacity:0;transform:translate(-50%,-50%) scale(.4)}}
+
+    /* Cookie banner */
+    .cookie{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;z-index:60;background:rgba(4,12,28,.92);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:1rem 1.25rem;max-width:680px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+    .cookie button{border-radius:12px;padding:.55rem .95rem;font-weight:700}
+  </style>
+</head>
+<body>
+  <!-- star layers -->
+  <canvas id="stars"></canvas>
+  <canvas id="constel"></canvas>
+  <div class="shoot"></div><div class="shoot"></div><div class="shoot"></div>
+
+  <!-- NAV -->
+  <nav class="nav animated-border">
+    <a href="#home">Home</a>
+    <a href="#projects">Projects</a>
+    <a href="#compiler">Java Runner</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- QUICK JUMP -->
+  <div class="jump">
+    <label class="sr-only" for="jump">Jump to</label>
+    <select id="jump">
+      <option value="">Jump to…</option>
+      <option value="#home">Home</option>
+      <option value="#projects">Projects</option>
+      <option value="#compiler">Java Runner</option>
+      <option value="#about">About</option>
+      <option value="#contact">Contact</option>
+    </select>
+  </div>
+
+  <!-- HERO -->
+  <section id="home" class="min-h-[92vh] flex flex-col items-center justify-center text-center px-6">
+    <h1 class="neon text-5xl md:text-7xl font-black tracking-tight">Java-Beauty-Suite</h1>
+    <p class="mt-5 max-w-3xl text-lg md:text-xl text-blue-200/90">
+      Modern Java applications with cinematic visuals, precision performance, and a star-lit experience.
+    </p>
+    <div class="mt-7 flex flex-wrap justify-center gap-2">
+      <span class="badge"><i>☕</i> Java</span>
+      <span class="badge"><i>⚡</i> Performance</span>
+      <span class="badge"><i>🧭</i> Cross-Platform</span>
+      <span class="badge"><i>🎨</i> Polished UI</span>
+      <span class="badge"><i>🧪</i> Robust Tests</span>
+    </div>
+    <a href="#projects" class="mt-10 inline-block card animated-border px-8 py-4 font-extrabold">🚀 Explore Projects</a>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="py-20 max-w-7xl mx-auto px-6">
+    <h2 class="neon text-4xl md:text-5xl font-extrabold text-center mb-14">Featured Projects</h2>
+    <div class="grid md:grid-cols-2 gap-8 lg:gap-10">
+      <a href="calculator.html" class="card animated-border block group">
+        <h3 class="text-2xl font-bold mb-2">☕ Beauty Calculator</h3>
+        <p class="text-blue-100/90">JavaFX scientific calculator with history, keyboard shortcuts, and animated, tactile buttons.</p>
+        <div class="mt-4 flex flex-wrap gap-2">
+          <span class="badge">JavaFX</span><span class="badge">Scientific</span><span class="badge">Dark UI</span>
+        </div>
+      </a>
+
+      <a href="todo.html" class="card animated-border block group">
+        <h3 class="text-2xl font-bold mb-2">📝 Beauty Todo App</h3>
+        <p class="text-blue-100/90">Priority tags, reminders, calendar view, and buttery transitions to keep focus sharp.</p>
+        <div class="mt-4 flex flex-wrap gap-2">
+          <span class="badge">Tasks</span><span class="badge">Reminders</span><span class="badge">Cloud-ready</span>
+        </div>
+      </a>
+
+      <a href="numbergame.html" class="card animated-border block group">
+        <h3 class="text-2xl font-bold mb-2">🎲 Number Guessing Game</h3>
+        <p class="text-blue-100/90">Levels, hints, streaks, and achievement flares — quick fun with polish.</p>
+        <div class="mt-4 flex flex-wrap gap-2">
+          <span class="badge">GUI</span><span class="badge">Leaderboards</span><span class="badge">Hints</span>
+        </div>
+      </a>
+
+      <a href="football.html" class="card animated-border block group">
+        <h3 class="text-2xl font-bold mb-2">⚽ Beauty Football Game</h3>
+        <p class="text-blue-100/90">Arcade feel, smooth physics, AI opponents, and local multiplayer — built in Java.</p>
+        <div class="mt-4 flex flex-wrap gap-2">
+          <span class="badge">Physics</span><span class="badge">AI</span><span class="badge">Multiplayer</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- JAVA COMPILER & RUNNER -->
+  <section id="compiler" class="py-20 border-t border-blue-900/40 bg-[rgba(0,10,30,.25)]">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="neon text-4xl font-extrabold mb-6">☕ Java Compiler & Runner</h2>
+      <p class="text-blue-100/90 mb-4">Write Java below and run it. The frontend posts to <code class="px-2 py-1 rounded bg-black/40">/api/java/run</code> (configure to your backend). Expected JSON: <code>{ stdout, stderr }</code>.</p>
+      <div class="grid lg:grid-cols-2 gap-6">
+        <div class="card animated-border">
+<textarea id="code" spellcheck="false" class="w-full h-[340px] bg-black/50 border border-white/10 rounded-xl p-4 font-mono text-[13.5px] leading-6 outline-none"
+>// Your Java here
+public class Main {
+  public static void main(String[] args) {
+    System.out.println("Hello from Java-Beauty-Suite!");
+  }
+}
+</textarea>
+          <div class="mt-3 flex flex-wrap gap-3">
+            <button id="runBtn" class="px-4 py-2 rounded-xl font-bold bg-blue-600 hover:bg-blue-700">▶ Run</button>
+            <button id="sample1" class="px-4 py-2 rounded-xl font-bold bg-slate-700 hover:bg-slate-600">Insert: Args</button>
+            <button id="sample2" class="px-4 py-2 rounded-xl font-bold bg-slate-700 hover:bg-slate-600">Insert: Loop</button>
+            <label class="ml-auto inline-flex items-center gap-2 text-sm opacity-80">
+              <input id="saveCode" type="checkbox" class="accent-blue-500"> Save code locally
+            </label>
+          </div>
+        </div>
+        <div class="card animated-border">
+          <h3 class="font-bold text-lg mb-2">Output</h3>
+          <pre id="out" class="bg-black/50 border border-white/10 rounded-xl p-4 h-[300px] overflow-auto text-[13.5px]"></pre>
+          <pre id="err" class="bg-black/30 border border-red-400/20 text-red-300 rounded-xl p-4 h-[110px] overflow-auto text-[13.5px] mt-3"></pre>
+        </div>
+      </div>
+      <p class="mt-3 text-xs opacity-70">Tip: Toggle “Save code locally” to persist in your browser (no server).</p>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="py-20">
+    <div class="max-w-5xl mx-auto px-6 text-center">
+      <h2 class="neon text-4xl font-extrabold mb-6">Why Java?</h2>
+      <p class="text-blue-100/90 text-lg">
+        Java blends reliability, massive ecosystem, and platform independence. With modern toolchains and polished UI frameworks,
+        it’s perfect for robust apps, games, and utilities that look as good as they run.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-20 border-t border-blue-900/40">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <div class="card animated-border">
+        <h2 class="text-3xl font-extrabold mb-2">Let’s Connect</h2>
+        <p class="text-blue-100/90">💻 GitHub:
+          <a class="text-sky-300 underline decoration-dotted underline-offset-4" target="_blank" rel="noopener" href="https://github.com/anshumanjadiya1102">Anshuman Jadiya</a>
+        </p>
+        <p class="text-blue-100/90">📧 Email:
+          <a class="text-sky-300 underline decoration-dotted underline-offset-4" href="mailto:anshuman.jadiya03@gmail.com">anshuman.jadiya03@gmail.com</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COOKIE BANNER -->
+  <div id="cookie" class="cookie hidden">
+    <div class="flex flex-col md:flex-row md:items-center gap-3">
+      <div class="flex-1">
+        <p class="text-sm leading-6">
+          We use local cookies to enhance your experience (saving UI choices/code). You can accept or decline; your choice is remembered for 6 months.
+        </p>
+      </div>
+      <div class="flex gap-2">
+        <button id="c-accept" class="bg-green-600 hover:bg-green-700">Accept</button>
+        <button id="c-decline" class="bg-slate-700 hover:bg-slate-600">Decline</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script>
+    /* Quick Jump */
+    document.getElementById('jump').addEventListener('change', e=>{
+      const v=e.target.value;if(v){document.querySelector(v)?.scrollIntoView({behavior:'smooth'})}
+    });
+
+    /* Stars + subtle constellation lines */
+    const s=document.getElementById('stars'), c=document.getElementById('constel');
+    const sx=s.getContext('2d'), cx=c.getContext('2d');
+    function resize(){s.width=c.width=innerWidth; s.height=c.height=innerHeight}
+    resize(); addEventListener('resize', resize);
+
+    const stars=[]; for(let i=0;i<220;i++){stars.push({x:Math.random()*s.width,y:Math.random()*s.height,r:Math.random()*1.8,vx:(Math.random()-.5)*.05,vy:(Math.random()-.5)*.05})}
+    function drawStars(){
+      sx.clearRect(0,0,s.width,s.height); sx.fillStyle="#fff";
+      for(const st of stars){st.x+=st.vx;st.y+=st.vy;
+        if(st.x<0||st.x>s.width)st.vx*=-1;if(st.y<0||st.y>s.height)st.vy*=-1;
+        sx.beginPath(); sx.arc(st.x,st.y,st.r,0,Math.PI*2); sx.fill();
+      }
+      // constellations
+      cx.clearRect(0,0,c.width,c.height); cx.lineWidth=.4; cx.strokeStyle="rgba(140,200,255,.15)";
+      for(let i=0;i<stars.length;i++){for(let j=i+1;j<i+8 && j<stars.length;j++){
+        const a=stars[i], b=stars[j], dx=a.x-b.x, dy=a.y-b.y, d=Math.hypot(dx,dy);
+        if(d<120){cx.globalAlpha=1-(d/120); cx.beginPath(); cx.moveTo(a.x,a.y); cx.lineTo(b.x,b.y); cx.stroke();}
+      }}
+      requestAnimationFrame(drawStars);
+    }
+    requestAnimationFrame(drawStars);
+
+    /* Cursor particles */
+    addEventListener('mousemove', (e)=>{
+      for(let k=0;k<2;k++){
+        const p=document.createElement('div'); p.className='cursor-p';
+        p.style.left=(e.clientX+(Math.random()*12-6))+'px';
+        p.style.top=(e.clientY+(Math.random()*12-6))+'px';
+        document.body.appendChild(p); setTimeout(()=>p.remove(),900);
+      }
+    });
+
+    /* Cookie consent */
+    const COOKIE_KEY='jbs-cookie-consent';
+    const $cookie=document.getElementById('cookie');
+    const consent=localStorage.getItem(COOKIE_KEY);
+    if(!consent){$cookie.classList.remove('hidden')}
+    const setConsent=(v)=>{localStorage.setItem(COOKIE_KEY,JSON.stringify({v,ts:Date.now()}));$cookie.remove();}
+    document.getElementById('c-accept').onclick=()=>setConsent('accepted');
+    document.getElementById('c-decline').onclick=()=>setConsent('declined');
+
+    /* Java Runner (front-end only; requires backend at /api/java/run) */
+    const codeEl=document.getElementById('code'), out=document.getElementById('out'), err=document.getElementById('err');
+    const runBtn=document.getElementById('runBtn'), saveToggle=document.getElementById('saveCode');
+    const SAVE_KEY='jbs-code';
+    // restore saved
+    try{const sv=localStorage.getItem(SAVE_KEY); if(sv){codeEl.value=sv; saveToggle.checked=true}}catch{}
+    saveToggle.addEventListener('change',()=>{ if(saveToggle.checked){localStorage.setItem(SAVE_KEY,codeEl.value)} else {localStorage.removeItem(SAVE_KEY)}});
+    codeEl.addEventListener('input',()=>{ if(saveToggle.checked){localStorage.setItem(SAVE_KEY,codeEl.value)} });
+
+    async function runJava(){
+      out.textContent='Compiling & running...'; err.textContent='';
+      try{
+        const res=await fetch('/api/java/run',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({source:codeEl.value, mainClass:'Main', args:[]})});
+        if(!res.ok){throw new Error('Runner HTTP '+res.status)}
+        const data=await res.json();
+        out.textContent=data.stdout||''; err.textContent=data.stderr||'';
+      }catch(e){ err.textContent=String(e); out.textContent='' }
+    }
+    runBtn.addEventListener('click', runJava);
+    // samples
+    document.getElementById('sample1').onclick=()=>{codeEl.value=`public class Main{public static void main(String[] a){for(String s: a)System.out.println("arg="+s);} }`;};
+    document.getElementById('sample2').onclick=()=>{codeEl.value=`public class Main{public static void main(String[] a){int s=0;for(int i=1;i<=10;i++)s+=i;System.out.println("sum="+s);} }`;};
+  </script>
+</body>
+</html>
