@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Number Guessing Game | Java-Beauty-Suite</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#061839;--g1:#4cc9f0;--g2:#3a86ff;--g3:#8338ec;--g4:#ff006e;--g5:#ff7b00}
+  body{background:var(--bg);color:#eaf2ff;font-family:'Inter',sans-serif;overflow-x:hidden}
+  body::before{content:"";position:fixed;inset:0;z-index:-3;background:
+    radial-gradient(1200px 800px at 15% 20%, rgba(0,90,210,.25), transparent 60%),
+    radial-gradient(1000px 700px at 85% 80%, rgba(160,0,255,.22), transparent 60%),
+    radial-gradient(900px 600px at 70% 15%, rgba(255,80,0,.15), transparent 60%), #071530}
+  #stars{position:fixed;inset:0;z-index:-2;pointer-events:none}
+  .neon{font-family:'Orbitron',sans-serif;color:var(--g1);text-shadow:0 0 10px var(--g1),0 0 20px var(--g2),0 0 34px var(--g3)}
+  .card{position:relative;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(12px);border-radius:22px;padding:1.75rem}
+  .card.animated::before{content:"";position:absolute;inset:0;padding:2px;border-radius:22px;background:linear-gradient(270deg,var(--g5),var(--g1),var(--g2),var(--g3),var(--g4),var(--g5));background-size:800% 800%;animation:borderMove 14s linear infinite;-webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+  @keyframes borderMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+  .badge{display:inline-flex;gap:.4rem;align-items:center;padding:.35rem .65rem;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);backdrop-filter:blur(6px);font-size:.8rem}
+  .cursor-p{position:fixed;width:8px;height:8px;border-radius:50%;background:radial-gradient(circle,var(--g1),transparent 70%);pointer-events:none;transform:translate(-50%,-50%);animation:fade .9s ease-out forwards;mix-blend-mode:screen}
+  @keyframes fade{from{opacity:1;transform:translate(-50%,-50%) scale(1)}to{opacity:0;transform:translate(-50%,-50%) scale(.4)}}
+</style>
+</head>
+<body>
+<canvas id="stars"></canvas>
+
+<section class="min-h-[90vh] flex flex-col items-center justify-center text-center px-6">
+  <h1 class="neon text-5xl md:text-6xl font-black">🎲 Number Guessing Game</h1>
+  <p class="mt-4 max-w-3xl text-blue-100/90">
+    Guess the secret number across escalating difficulties. Enjoy <b>hint system</b>, streak bonuses, celebratory flares, and a compact GUI.
+  </p>
+  <div class="mt-5 flex flex-wrap justify-center gap-2">
+    <span class="badge">GUI</span><span class="badge">Hints</span><span class="badge">Streaks</span><span class="badge">Achievements</span>
+  </div>
+  <a href="index.html#projects" class="mt-8 inline-block card animated px-6 py-3 font-extrabold">⬅ Back</a>
+</section>
+
+<section class="max-w-5xl mx-auto px-6 pb-20 grid md:grid-cols-2 gap-6">
+  <div class="card animated">
+    <h3 class="text-xl font-bold mb-2">Highlights</h3>
+    <ul class="list-disc list-inside text-blue-100/90 space-y-1">
+      <li>Three modes: Easy / Normal / Hard</li>
+      <li>Hot/Cold hint spectrum + limited hints</li>
+      <li>Combo streaks = score multipliers</li>
+      <li>Simple, fast UI for quick rounds</li>
+    </ul>
+  </div>
+  <div class="card animated">
+    <h3 class="text-xl font-bold mb-2">Tech</h3>
+    <ul class="list-disc list-inside text-blue-100/90 space-y-1">
+      <li>JavaFX + timers + transitions</li>
+      <li>PRNG seeded rounds; reproducible tests</li>
+      <li>Lightweight state machine per round</li>
+      <li>Stats persisted locally</li>
+    </ul>
+  </div>
+</section>
+
+<script>
+  const cvs=document.getElementById('stars'), ctx=cvs.getContext('2d');
+  function R(){cvs.width=innerWidth;cvs.height=innerHeight} R(); addEventListener('resize',R);
+  const stars=[]; for(let i=0;i<180;i++) stars.push({x:Math.random()*cvs.width,y:Math.random()*cvs.height,r:Math.random()*1.8});
+  (function draw(){ctx.clearRect(0,0,cvs.width,cvs.height);ctx.fillStyle="#fff";for(const s of stars){ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fill()} requestAnimationFrame(draw)})();
+  addEventListener('mousemove',e=>{for(let k=0;k<2;k++){const p=document.createElement('div');p.className='cursor-p';p.style.left=(e.clientX+(Math.random()*12-6))+'px';p.style.top=(e.clientY+(Math.random()*12-6))+'px';document.body.appendChild(p);setTimeout(()=>p.remove(),900)}})
+</script>
+</body></html>
