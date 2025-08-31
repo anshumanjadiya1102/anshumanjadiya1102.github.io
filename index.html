@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Anshuman Jadiya - Java Beauty Suite</title>
+<title>Java Beauty Suite ☕ - Anshuman Jadiya</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
@@ -11,7 +11,9 @@
   --bg:#061839; --glass:rgba(255,255,255,.06);
   --glow1:#4cc9f0; --glow2:#3a86ff; --glow3:#8338ec; --glow4:#ff006e; --glow5:#ff7b00;
 }
-html,body{height:100%;font-family:'Inter',sans-serif;background:var(--bg);color:#eaf2ff;overflow-x:hidden;scroll-behavior:smooth;}
+html,body{height:100%;scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:#eaf2ff;overflow-x:hidden;position:relative}
+/* Nebula backdrop */
 body::before{
   content:"";position:fixed;inset:0;z-index:-3;
   background:
@@ -21,11 +23,16 @@ body::before{
     #071530;
   filter:saturate(115%);
 }
+/* Stars canvas */
 #stars, #constel {position:fixed;inset:0;z-index:-2;pointer-events:none}
+/* Shooting stars */
 .shoot{position:fixed;top:-120px;width:2px;height:110px;background:linear-gradient(180deg,rgba(255,255,255,.95),transparent);opacity:.9;filter:drop-shadow(0 0 6px #fff);transform:rotate(45deg);z-index:-1;animation:shoot 7s linear infinite}
 .shoot:nth-child(2){left:20%;animation-delay:2s}.shoot:nth-child(3){left:60%;animation-delay:4.5s}.shoot:nth-child(4){left:35%;animation-delay:6.5s}
 @keyframes shoot{0%{transform:translate(-30vw,-10vh) rotate(45deg);opacity:0}10%{opacity:1}100%{transform:translate(100vw,90vh) rotate(45deg);opacity:0}}
+
+/* Neon text */
 .neon{font-family:'Orbitron',sans-serif;color:var(--glow1);text-shadow:0 0 10px var(--glow1),0 0 20px var(--glow2),0 0 34px var(--glow3)}
+/* Cards + moving borders */
 .card{position:relative;background:var(--glass);border-radius:22px;padding:1.75rem;border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(12px);transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s}
 .card:hover{transform:translateY(-8px) scale(1.03) rotateX(4deg);box-shadow:0 18px 48px -10px rgba(76,201,240,.25)}
 .animated-border::before{
@@ -36,27 +43,37 @@ body::before{
   -webkit-mask-composite:xor; mask-composite:exclude;pointer-events:none
 }
 @keyframes borderMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+/* Badges */
 .badge{display:inline-flex;align-items:center;gap:.4rem;padding:.35rem .65rem;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);backdrop-filter:blur(6px);font-size:.8rem}
 .badge i{font-style:normal;opacity:.9}
+
+/* Nav */
 nav.nav{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:50;background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.12);padding:.35rem .75rem;border-radius:999px;backdrop-filter:blur(10px)}
 nav.nav a{color:#dbeaff;margin:0 .6rem;font-weight:600;transition:color .25s, text-shadow .25s}
 nav.nav a:hover{color:var(--glow1);text-shadow:0 0 10px var(--glow1)}
+
+/* Quick Jump */
 .jump{position:fixed;right:18px;bottom:18px;z-index:40}
 .jump select{background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.15);color:#eaf2ff;border-radius:14px;padding:.6rem .8rem}
+
+/* Cursor particles */
 .cursor-p{position:fixed;width:8px;height:8px;border-radius:50%;background:radial-gradient(circle,var(--glow1),transparent 70%);pointer-events:none;transform:translate(-50%,-50%);animation:fade .9s ease-out forwards;mix-blend-mode:screen;filter:blur(.2px)}
-@keyframes fade{from{opacity:1;transform:translate(-50%,-50%) scale(1)}to{opacity:0;transform:translate(-50%,-50%) scale(.4)}}
-.cookie{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;z-index:60;background:rgba(4,12,28,.92);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:1rem 1.25rem;max-width:680px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
-.cookie button{border-radius:12px;padding:.55rem .95rem;font-weight:700}
+@keyframes fade{from{opacity:1;transform:translate(-50%,-50%) scale(1)}to{opacity:0;transform:translate(-50%,-50%) scale(.4)}
+
+/* Sun effect in hero */
+.hero-sun{position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,#FFD700,#FFA500);opacity:0.9;z-index:0}
+
+/* Footer */
+footer{text-align:center;padding:20px;color:#fff;background:#2e7d32;margin-top:40px;border-top:1px solid rgba(255,255,255,.15);}
 </style>
 </head>
 <body>
-
-<!-- Star layers -->
 <canvas id="stars"></canvas>
 <canvas id="constel"></canvas>
 <div class="shoot"></div><div class="shoot"></div><div class="shoot"></div>
 
-<!-- NAV -->
+<!-- Nav -->
 <nav class="nav animated-border">
   <a href="#home">Home</a>
   <a href="#projects">Projects</a>
@@ -65,7 +82,7 @@ nav.nav a:hover{color:var(--glow1);text-shadow:0 0 10px var(--glow1)}
   <a href="#contact">Contact</a>
 </nav>
 
-<!-- QUICK JUMP -->
+<!-- Quick Jump -->
 <div class="jump">
   <select id="jump">
     <option value="">Jump to…</option>
@@ -77,12 +94,12 @@ nav.nav a:hover{color:var(--glow1);text-shadow:0 0 10px var(--glow1)}
   </select>
 </div>
 
-<!-- HERO -->
-<section id="home" class="min-h-[92vh] flex flex-col items-center justify-center text-center px-6">
-  <h1 class="neon text-5xl md:text-7xl font-black tracking-tight">Java-Beauty-Suite</h1>
-  <p class="mt-5 max-w-3xl text-lg md:text-xl text-blue-200/90">
-    Modern Java applications with cinematic visuals, precision performance, and a star-lit experience.
-  </p>
+<!-- Hero -->
+<section id="home" class="relative min-h-[92vh] flex flex-col items-center justify-center text-center px-6">
+  <div class="hero-sun"></div>
+  <img src="https://github.com/anshumanjadiya1102.png" class="rounded-full w-48 h-48 border-4 border-white shadow-2xl relative z-10" alt="Profile">
+  <h1 class="neon text-5xl md:text-7xl font-black mt-5">Java-Beauty-Suite</h1>
+  <p class="mt-4 max-w-3xl text-lg md:text-xl text-blue-200/90">Modern Java applications with cinematic visuals, precision performance, and a star-lit experience.</p>
   <div class="mt-7 flex flex-wrap justify-center gap-2">
     <span class="badge"><i>☕</i> Java</span>
     <span class="badge"><i>⚡</i> Performance</span>
@@ -93,107 +110,116 @@ nav.nav a:hover{color:var(--glow1);text-shadow:0 0 10px var(--glow1)}
   <a href="#projects" class="mt-10 inline-block card animated-border px-8 py-4 font-extrabold">🚀 Explore Projects</a>
 </section>
 
-<!-- PROJECTS -->
+<!-- Projects -->
 <section id="projects" class="py-20 max-w-7xl mx-auto px-6">
-  <h2 class="neon text-4xl md:text-5xl font-extrabold text-center mb-14">Featured Projects</h2>
-  <div class="grid md:grid-cols-2 gap-8 lg:gap-10">
-    
-    <a href="calculator.html" class="card animated-border block group">
-      <h3 class="text-2xl font-bold mb-2">☕Java Beauty Calculator</h3>
-      <p class="text-blue-100/90">JavaFX scientific calculator with history, keyboard shortcuts, and animated, tactile buttons.</p>
-      <div class="mt-4 flex flex-wrap gap-2">
-        <span class="badge">JavaFX</span><span class="badge">Scientific</span><span class="badge">Dark UI</span>
-      </div>
-      <p class="mt-2"><a href="https://github.com/anshumanjadiya1102/Java_Beauty_Calculator" target="_blank">View on GitHub</a></p>
-    </a>
+<h2 class="neon text-4xl md:text-5xl font-extrabold text-center mb-14">Featured Projects</h2>
+<div class="grid md:grid-cols-2 gap-8 lg:gap-10">
+  <a href="calculator.html" class="card animated-border block group">
+    <h3 class="text-2xl font-bold mb-2">☕ Beauty Calculator</h3>
+    <p class="text-blue-100/90">JavaFX scientific calculator with history, keyboard shortcuts, and animated buttons.</p>
+    <div class="mt-4 flex flex-wrap gap-2">
+      <span class="badge">JavaFX</span><span class="badge">Scientific</span><span class="badge">Dark UI</span>
+    </div>
+  </a>
 
-    <a href="todo.html" class="card animated-border block group">
-      <h3 class="text-2xl font-bold mb-2">📝 Beauty Todo App</h3>
-      <p class="text-blue-100/90">Priority tags, reminders, calendar view, and buttery transitions to keep focus sharp.</p>
-      <div class="mt-4 flex flex-wrap gap-2">
-        <span class="badge">Tasks</span><span class="badge">Reminders</span><span class="badge">Cloud-ready</span>
-      </div>
-      <p class="mt-2"><a href="https://github.com/anshumanjadiya1102/Todo-App.java" target="_blank">View on GitHub</a></p>
-    </a>
+  <a href="todo.html" class="card animated-border block group">
+    <h3 class="text-2xl font-bold mb-2">📝 Beauty Todo App</h3>
+    <p class="text-blue-100/90">Priority tags, calculation history reminders, calendar view, and buttery transitions to keep focus sharp.</p>
+    <div class="mt-4 flex flex-wrap gap-2">
+      <span class="badge">Tasks</span><span class="badge">Reminders</span><span class="badge">Cloud-ready</span>
+    </div>
+  </a>
 
-    <a href="numbergame.html" class="card animated-border block group">
-      <h3 class="text-2xl font-bold mb-2">🎲 Number Guessing Game</h3>
-      <p class="text-blue-100/90">Levels, hints, streaks, and achievement flares — quick fun with polish.</p>
-      <div class="mt-4 flex flex-wrap gap-2">
-        <span class="badge">GUI</span><span class="badge">Leaderboards</span><span class="badge">Hints</span>
-      </div>
-      <p class="mt-2"><a href="https://github.com/anshumanjadiya1102/Number-Guessing-Game" target="_blank">View on GitHub</a></p>
-    </a>
+  <a href="numbergame.html" class="card animated-border block group">
+    <h3 class="text-2xl font-bold mb-2">🎲 Number Guessing Game</h3>
+    <p class="text-blue-100/90">Levels, hints, streaks, and achievement flares — quick fun with polish.</p>
+    <div class="mt-4 flex flex-wrap gap-2">
+      <span class="badge">GUI</span><span class="badge">Leaderboards</span><span class="badge">Hints</span>
+    </div>
+  </a>
 
-    <a href="football.html" class="card animated-border block group">
-      <h3 class="text-2xl font-bold mb-2">⚽ Beauty Football Game</h3>
-      <p class="text-blue-100/90">Arcade feel, smooth physics, AI opponents, and local multiplayer — built in Java.</p>
-      <div class="mt-4 flex flex-wrap gap-2">
-        <span class="badge">Physics</span><span class="badge">AI</span><span class="badge">Multiplayer</span>
-      </div>
-      <p class="mt-2"><a href="https://github.com/anshumanjadiya1102/Football_Game" target="_blank">View on GitHub</a></p>
-    </a>
+  <a href="football.html" class="card animated-border block group">
+    <h3 class="text-2xl font-bold mb-2">⚽ Beauty Football Game</h3>
+    <p class="text-blue-100/90">Arcade feel, smooth physics, AI opponents, and local multiplayer — built in Java.</p>
+    <div class="mt-4 flex flex-wrap gap-2">
+      <span class="badge">Physics</span><span class="badge">AI</span><span class="badge">Multiplayer</span>
+    </div>
+  </a>
 
-    <!-- 5th App: Tic Tac Toe FX -->
-    <a href="tictactoe.html" class="card animated-border block group">
-      <h3 class="text-2xl font-bold mb-2">❌⭕ Tic Tac Toe FX</h3>
-      <p class="text-blue-100/90">A modern JavaFX version of Tic Tac Toe with AI difficulty levels, smooth animations, and responsive UI.</p>
-      <div class="mt-4 flex flex-wrap gap-2">
-        <span class="badge">JavaFX</span>
-        <span class="badge">AI Levels</span>
-        <span class="badge">Responsive UI</span>
-      </div>
-      <p class="mt-2"><a href="https://github.com/anshumanjadiya1102/TicTacToeFX.java" target="_blank">View on GitHub</a></p>
-    </a>
-
-  </div>
+  <a href="tictactoe.html" class="card animated-border block group">
+    <h3 class="text-2xl font-bold mb-2">❌ Java FX Tic Tac Toe</h3>
+    <p class="text-blue-100/90">Modern Tic Tac Toe with difficulty levels and sleek JavaFX interface.</p>
+    <div class="mt-4 flex flex-wrap gap-2">
+      <span class="badge">JavaFX</span><span class="badge">Game</span><span class="badge">Difficulty</span>
+    </div>
+  </a>
+</div>
 </section>
 
-<!-- JAVA COMPILER & RUNNER -->
-<section id="compiler" class="py-20 border-t border-blue-900/40 bg-[rgba(0,10,30,.25)]">
-  <h2 class="neon text-4xl md:text-5xl font-extrabold text-center mb-12">Java Runner</h2>
-  <iframe src="runner.html" class="w-full md:w-3/4 mx-auto h-[500px] rounded-2xl border border-blue-800/40"></iframe>
+<!-- Java Runner -->
+<section id="compiler" class="py-20 px-6 max-w-4xl mx-auto">
+<h2 class="neon text-4xl md:text-5xl font-extrabold text-center mb-10">⚡ Java Runner</h2>
+<p class="text-center text-blue-200/80 mb-8">Write and execute Java code directly in your browser (Server-side execution required).</p>
+<textarea id="javaCode" class="w-full h-64 p-4 rounded-xl bg-[#0b1a33] text-white text-lg font-mono resize-none" placeholder="Write your Java code here..."></textarea>
+<button id="runBtn" class="mt-4 px-6 py-3 rounded-xl bg-gradient-to-r from-yellow-400 to-orange-500 font-bold hover:scale-105 transition-transform">Run Code</button>
+<pre id="output" class="mt-4 p-4 rounded-xl bg-[#09132a] text-green-400 font-mono max-h-96 overflow-y-auto"></pre>
 </section>
 
-<!-- ABOUT -->
-<section id="about" class="py-20 max-w-5xl mx-auto px-6">
-  <h2 class="neon text-4xl md:text-5xl font-extrabold text-center mb-10">About Me</h2>
-  <p class="text-center text-blue-100/80 text-lg md:text-xl">
-    I am Anshuman Jadiya, a passionate Java developer creating visually stunning, performant applications.
-    My suite spans calculators, games, productivity apps, and interactive learning tools.
-    Each project emphasizes creativity, clean code, and responsive design.
-  </p>
+<!-- About -->
+<section id="about" class="py-20 max-w-6xl mx-auto px-6">
+<h2 class="neon text-4xl md:text-5xl font-extrabold text-center mb-12">About Java Beauty Suite</h2>
+<p class="text-center text-blue-100/90 text-lg md:text-xl max-w-3xl mx-auto mb-6">Java Beauty Suite is a collection of **5 curated applications** built with modern JavaFX features, focusing on **design, usability, and performance**. Each app is handcrafted with attention to detail, animations, and user delight.</p>
+<p class="text-center text-blue-200/80 max-w-3xl mx-auto">Explore calculators, games, productivity tools, and more — all designed to showcase the **beauty and power of Java**. Licensed under **Apache 2.0**.</p>
 </section>
 
-<!-- CONTACT -->
-<section id="contact" class="py-20 max-w-5xl mx-auto px-6 text-center">
-  <h2 class="neon text-4xl md:text-5xl font-extrabold mb-10">Get in Touch</h2>
-  <p class="text-blue-100/80 mb-6">Let's collaborate or discuss ideas about Java development!</p>
-  <div class="flex justify-center gap-4 flex-wrap">
-    <a href="mailto:anshuman@example.com" class="badge">📧 Email</a>
-    <a href="https://github.com/anshumanjadiya1102" target="_blank" class="badge">🐱 GitHub</a>
-    <a href="https://dev.to/anshumanjadiya1102" target="_blank" class="badge">🔗 Dev.to </a>
-  </div>
+<!-- Contact -->
+<section id="contact" class="py-20 max-w-4xl mx-auto px-6">
+<h2 class="neon text-4xl md:text-5xl font-extrabold text-center mb-10">Contact</h2>
+<p class="text-center text-blue-100/90 mb-6">Reach out via <a href="mailto:anshuman.jadiya03@gmail.com" class="underline hover:text-yellow-300">email</a> or connect on <a href="https://github.com/anshumanjadiya" class="underline hover:text-yellow-300">GitHub</a> <a href="https://dev.to/anshumanjadiya1102" class="underline hover:text-yellow-300">Dev.to</a>.</p>
 </section>
+
+<!-- Footer -->
+<footer>
+© 2025 Anshuman Jadiya | All rights reserved | Java Beauty Suite ☕
+</footer>
 
 <script>
-// Jump select
+// Quick jump
 document.getElementById('jump').addEventListener('change', e=>{
-  if(e.target.value){location.href=e.target.value}
+  if(e.target.value) location.href=e.target.value;
 })
 
 // Cursor particles
-document.addEventListener('mousemove', e=>{
-  const c = document.createElement('div'); c.className='cursor-p'; document.body.appendChild(c);
-  c.style.left=e.clientX+'px'; c.style.top=e.clientY+'px';
-  setTimeout(()=>c.remove(),900);
+const particles=[]; document.addEventListener('mousemove',e=>{
+  const p=document.createElement('div');p.className='cursor-p';p.style.left=e.clientX+'px';p.style.top=e.clientY+'px';document.body.appendChild(p);
+  setTimeout(()=>p.remove(),900);
 })
-</script>
- <!-- FOOTER -->
-<footer class="mt-20 py-6 border-t border-blue-900/40 text-center text-blue-200/70 text-sm">
-  <p>© 2025 Anshuman Jadiya. All Rights Reserved.</p>
-  <p>“Where creativity meets the beauty in Java ☕✨”</p>
-</footer>
 
+// Java Runner Frontend
+document.getElementById('runBtn').addEventListener('click', async ()=>{
+  const code=document.getElementById('javaCode').value;
+  const output=document.getElementById('output');
+  output.textContent='Running...';
+  try{
+    const resp=await fetch('/api/java/run',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({code})
+    });
+    const data=await resp.json();
+    output.textContent=data.output||data.error||'No response';
+  }catch(err){
+    output.textContent='Error: '+err.message;
+  }
+});
+
+// Star canvas
+const canvas=document.getElementById('stars');const ctx=canvas.getContext('2d');canvas.width=innerWidth;canvas.height=innerHeight;
+const starsArray=[];for(let i=0;i<200;i++){starsArray.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.2})}
+function drawStars(){ctx.clearRect(0,0,canvas.width,canvas.height);ctx.fillStyle='#fff';starsArray.forEach(s=>{ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fill()})}
+setInterval(drawStars,40);
+window.addEventListener('resize',()=>{canvas.width=innerWidth;canvas.height=innerHeight;})
+</script>
 </body>
 </html>
+
