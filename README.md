@@ -1,4 +1,4 @@
-# 🌐 Java_Beauty_Suite – anshumanjadiya.github.io  
+# 🌐 Java_Beauty_Suite – anshumanjadiya1102.github.io  
 
 <p align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&text=Java+Beauty+Suite&height=100&section=header"/>
@@ -8,7 +8,7 @@
 
 ✨ *“Where creativity meets the beauty in Java ☕✨”* – **Java_Beauty_Suite**  
 
-[![Website](https://img.shields.io/badge/Website-Live-blue?style=for-the-badge&logo=github)](https://anshumanjadiya.github.io)  
+[![Website](https://img.shields.io/badge/Website-Live-blue?style=for-the-badge&logo=github)](https://anshumanjadiya1102.github.io)  
 [![License](https://img.shields.io/badge/License-Apache_2.0-green?style=for-the-badge)](LICENSE)  
 [![Java](https://img.shields.io/badge/Code-Java-red?style=for-the-badge&logo=java)](https://www.oracle.com/java/)  
 
