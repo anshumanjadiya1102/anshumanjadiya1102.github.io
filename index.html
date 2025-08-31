@@ -3,21 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Anshuman Jadiya - Java Beauty Suite</title>
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-
-   <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-   <!-- Hero -->
-  <section class="hero">
-    <div class="sun"></div>
-    <img src="https://github.com/anshumanjadiya1102.png" alt="Profile Image">
-    <h2>Hi, I'm Anshuman Jadiya ☕</h2>
-    <p>“Where creativity meets the beauty in Java”</p>
-  </section>
-  <title>Java-Beauty-Suite ☕ -- Anshuman Jadiya</title>
+  <title>Java Beauty Suite ☕ -- Anshuman Jadiya</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
@@ -25,8 +11,10 @@
       --bg:#061839; --glass:rgba(255,255,255,.06);
       --glow1:#4cc9f0; --glow2:#3a86ff; --glow3:#8338ec; --glow4:#ff006e; --glow5:#ff7b00;
     }
-    html,body{height:100%}
-    body{font-family:'Inter',sans-serif;background:var(--bg);color:#eaf2ff;overflow-x:hidden;scroll-behavior:smooth}
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html,body{height:100%;}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:#eaf2ff;overflow-x:hidden;scroll-behavior:smooth;}
+
     /* Nebula backdrop */
     body::before{
       content:"";position:fixed;inset:0;z-index:-3;
@@ -37,6 +25,7 @@
         #071530;
       filter:saturate(115%);
     }
+
     /* Stars canvas */
     #stars, #constel {position:fixed;inset:0;z-index:-2;pointer-events:none}
     /* Shooting stars */
@@ -44,50 +33,9 @@
     .shoot:nth-child(2){left:20%;animation-delay:2s}.shoot:nth-child(3){left:60%;animation-delay:4.5s}.shoot:nth-child(4){left:35%;animation-delay:6.5s}
     @keyframes shoot{0%{transform:translate(-30vw,-10vh) rotate(45deg);opacity:0}10%{opacity:1}100%{transform:translate(100vw,90vh) rotate(45deg);opacity:0}}
 
-    /* Neon text */
-    .neon{font-family:'Orbitron',sans-serif;color:var(--glow1);text-shadow:0 0 10px var(--glow1),0 0 20px var(--glow2),0 0 34px var(--glow3)}
-    /* Cards + moving borders */
-    .card{position:relative;background:var(--glass);border-radius:22px;padding:1.75rem;border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(12px);transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s}
-    .card:hover{transform:translateY(-8px) scale(1.03) rotateX(4deg);box-shadow:0 18px 48px -10px rgba(76,201,240,.25)}
-    .animated-border::before{
-      content:"";position:absolute;inset:0;padding:2px;border-radius:22px;
-      background:linear-gradient(270deg,var(--glow5),var(--glow1),var(--glow2),var(--glow3),var(--glow4),var(--glow5));
-      background-size:800% 800%;animation:borderMove 14s linear infinite;
-      -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      -webkit-mask-composite:xor; mask-composite:exclude;pointer-events:none
-    }
-    @keyframes borderMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-
-    /* Badges */
-    .badge{display:inline-flex;align-items:center;gap:.4rem;padding:.35rem .65rem;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);backdrop-filter:blur(6px);font-size:.8rem}
-    .badge i{font-style:normal;opacity:.9}
-
-    /* Nav */
-    nav.nav{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:50;background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.12);padding:.35rem .75rem;border-radius:999px;backdrop-filter:blur(10px)}
-    nav.nav a{color:#dbeaff;margin:0 .6rem;font-weight:600;transition:color .25s, text-shadow .25s}
-    nav.nav a:hover{color:var(--glow1);text-shadow:0 0 10px var(--glow1)}
-    /* Quick Jump */
-    .jump{position:fixed;right:18px;bottom:18px;z-index:40}
-    .jump select{background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.15);color:#eaf2ff;border-radius:14px;padding:.6rem .8rem}
-
-    /* Cursor particles */
-    .cursor-p{position:fixed;width:8px;height:8px;border-radius:50%;background:radial-gradient(circle,var(--glow1),transparent 70%);pointer-events:none;transform:translate(-50%,-50%);animation:fade .9s ease-out forwards;mix-blend-mode:screen;filter:blur(.2px)}
-    @keyframes fade{from{opacity:1;transform:translate(-50%,-50%) scale(1)}to{opacity:0;transform:translate(-50%,-50%) scale(.4)}}
-
-    /* Cookie banner */
-    .cookie{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;z-index:60;background:rgba(4,12,28,.92);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:1rem 1.25rem;max-width:680px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
-    .cookie button{border-radius:12px;padding:.55rem .95rem;font-weight:700}
-
-
-    body {
-      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color:#333;
-      background: linear-gradient(to bottom, #87CEEB, #c8e6c9);
-      overflow-x:hidden;
-    }
-
-    header {
-      background: rgba(255,255,255,0.9);
+    /* Header */
+    header{
+      background: rgba(255,255,255,0.05);
       padding:15px 30px;
       display:flex;
       justify-content:space-between;
@@ -95,25 +43,18 @@
       position: sticky;
       top:0;
       z-index:1000;
-      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(255,255,255,.12);
     }
-
-    header h1 { font-size:1.5rem; color:#2e7d32; }
-    nav a {
-      margin:0 15px;
-      text-decoration:none;
-      color:#333;
-      font-weight:bold;
-      transition: color 0.3s, text-shadow 0.3s;
-    }
-    nav a:hover { color:#2e7d32; text-shadow: 0 0 10px #81c784; }
+    header h1 { font-size:1.5rem; color:#4cc9f0; font-family:'Orbitron',sans-serif; }
+    nav a { margin:0 15px; text-decoration:none; color:#eaf2ff; font-weight:bold; transition: color 0.3s, text-shadow 0.3s; }
+    nav a:hover { color:var(--glow1); text-shadow:0 0 10px var(--glow1); }
 
     /* Hero Section */
     .hero {
       position: relative;
       text-align:center;
       padding: 80px 20px;
-      background: linear-gradient(to bottom, #fceabb, #f8b500);
     }
     .hero .sun {
       position:absolute;
@@ -126,6 +67,12 @@
       border-radius:50%;
       z-index:0;
       opacity:0.9;
+      animation: pulseSun 6s ease-in-out infinite alternate;
+    }
+    @keyframes pulseSun{
+      0%{transform:translateX(-50%) scale(1);}
+      50%{transform:translateX(-50%) scale(1.08);}
+      100%{transform:translateX(-50%) scale(1);}
     }
     .hero img {
       width:200px;
@@ -138,67 +85,63 @@
       transition: transform 0.3s, box-shadow 0.3s;
     }
     .hero img:hover { transform: scale(1.08); box-shadow:0 12px 25px rgba(0,0,0,0.5); }
+    .hero h2 { margin-top:20px; font-size:2.5rem; color:var(--glow2); text-shadow:0 0 12px var(--glow1),0 0 24px var(--glow3); }
 
-    .hero h2 { margin-top:20px; font-size:2.5rem; color:#2e7d32; }
+    /* Neon Text */
+    .neon{font-family:'Orbitron',sans-serif;color:var(--glow1);text-shadow:0 0 10px var(--glow1),0 0 20px var(--glow2),0 0 34px var(--glow3);}
 
-    section { padding:60px 20px; max-width:1200px; margin:auto; }
-    section h2 { text-align:center; margin-bottom:30px; font-size:2rem; color:#2e7d32; }
-
-    /* Why Java */
-    .why-java .java-container {
-      display:flex; align-items:center; gap:20px; margin-bottom:30px;
-    }
-    .why-java .java-logo { width:80px; transition: transform 0.3s; }
-    .why-java .java-logo:hover { transform: scale(1.1) rotate(10deg); }
-
-    .why-java .java-facts {
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
-      gap:20px;
-    }
-    .why-java .fact-box {
-      background:#fff;
-      padding:20px;
-      border-radius:12px;
-      box-shadow:0 4px 15px rgba(0,0,0,0.2);
-      transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
-    }
-    .why-java .fact-box:hover {
-      transform: translateY(-5px) scale(1.05);
-      box-shadow:0 8px 25px rgba(0,0,0,0.35);
-      background: #f0fff0;
-    }
-
-    /* Portfolio */
-    .portfolio-grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
-      gap:20px;
-    }
-    .project-card {
-      background:#fff;
-      padding:20px;
-      border-radius:12px;
-      box-shadow:0 4px 15px rgba(0,0,0,0.2);
-      transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    /* Cards + animated border */
+    .card{
       position:relative;
+      background:var(--glass);
+      border-radius:22px;
+      padding:1.75rem;
+      border:1px solid rgba(255,255,255,.12);
+      backdrop-filter:blur(12px);
+      transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s;
     }
-    .project-card:hover {
-      transform: translateY(-8px) scale(1.05);
-      box-shadow:0 8px 25px rgba(0,0,0,0.35);
-      background: #f0fff0;
+    .card.animated-border::before{
+      content:"";position:absolute;inset:0;padding:2px;border-radius:22px;
+      background:linear-gradient(270deg,var(--glow5),var(--glow1),var(--glow2),var(--glow3),var(--glow4),var(--glow5));
+      background-size:800% 800%;animation:borderMove 14s linear infinite;
+      -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite:xor; mask-composite:exclude;pointer-events:none
     }
-    .project-icon {
-      font-size:1.5rem;
+    @keyframes borderMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+    /* Glowing card hover effects */
+    .card:hover{
+      transform: translateY(-12px) scale(1.05) rotateX(4deg) rotateY(2deg);
+      box-shadow:0 20px 50px rgba(76,201,240,0.35), 0 0 40px rgba(255,0,110,0.25);
+      border:1px solid rgba(255,255,255,0.18);
+    }
+    .card:hover h3{
+      text-shadow:0 0 12px var(--glow1),0 0 24px var(--glow2);
+      color:#fff;
+    }
+    .card .badge i{
       display:inline-block;
-      margin-bottom:10px;
-      transition: transform 0.3s, color 0.3s;
+      transition:transform .3s, text-shadow .3s, color .3s;
     }
-    .project-card:hover .project-icon { transform: scale(1.3) rotate(10deg); color:#FFD700; }
+    .card:hover .badge i{
+      transform: translateY(-4px) rotate(15deg);
+      text-shadow:0 0 10px var(--glow2),0 0 20px var(--glow3);
+      color: var(--glow4);
+    }
+    .card .badge{
+      transition: transform .25s, background .25s;
+    }
+    .card:hover .badge{
+      transform: scale(1.1);
+      background: rgba(255,255,255,0.12);
+    }
+
+    /* Sections */
+    section{padding:60px 20px; max-width:1200px; margin:auto;}
+    section h2{text-align:center;margin-bottom:30px;font-size:2rem;color:var(--glow2);}
 
     /* Contact */
-    .contact { text-align:center; }
-    .contact a {
+    .contact a{
       display:inline-block;
       margin:10px;
       text-decoration:none;
@@ -208,79 +151,103 @@
       border-radius:8px;
       transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
     }
-    .contact a:hover {
+    .contact a:hover{
       background:#1b5e20;
       transform: scale(1.1);
       box-shadow:0 4px 15px rgba(0,0,0,0.3);
     }
-
-    /* Footer */
-    footer { text-align:center; padding:20px; background:#2e7d32; color:#fff; margin-top:40px; }
-
   </style>
 </head>
 <body>
 
+  <!-- star layers -->
+  <canvas id="stars"></canvas>
+  <canvas id="constel"></canvas>
+  <div class="shoot"></div><div class="shoot"></div><div class="shoot"></div>
+
   <!-- Header -->
   <header>
-    <h1>Java Beauty Suite - Anshuman Jadiya ✨</h1>
+    <h1>Java Beauty Suite ✨</h1>
     <nav>
-      <a href="#why-java">Why Java</a>
-      <a href="#portfolio">Portfolio</a>
+      <a href="#home">Home</a>
+      <a href="#projects">Projects</a>
+      <a href="#compiler">Java Runner</a>
+      <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
   <!-- Hero -->
-  <section class="hero">
+  <section id="home" class="hero min-h-[92vh] flex flex-col items-center justify-center text-center px-6">
     <div class="sun"></div>
     <img src="https://github.com/anshumanjadiya1102.png" alt="Profile Image">
-    <h2>Hi, I'm Anshuman Jadiya ☕</h2>
-    <p>“Where creativity meets the beauty in Java”</p>
+    <h1 class="neon text-5xl md:text-7xl font-black tracking-tight">Java-Beauty-Suite</h1>
+    <p class="mt-5 max-w-3xl text-lg md:text-xl text-blue-200/90">
+      Modern Java applications with cinematic visuals, precision performance, and a star-lit experience.
+    </p>
+    <div class="mt-7 flex flex-wrap justify-center gap-2">
+      <span class="badge"><i>☕</i> Java</span>
+      <span class="badge"><i>⚡</i> Performance</span>
+      <span class="badge"><i>🧭</i> Cross-Platform</span>
+      <span class="badge"><i>🎨</i> Polished UI</span>
+      <span class="badge"><i>🧪</i> Robust Tests</span>
+    </div>
+    <a href="#projects" class="mt-10 inline-block card animated-border px-8 py-4 font-extrabold">🚀 Explore Projects</a>
   </section>
 
-  <!-- Why Java -->
-  <section id="why-java" class="why-java">
-    <div class="java-container">
-      <img src="https://upload.wikimedia.org/wikipedia/en/3/30/Java_programming_language_logo.svg" alt="Java Logo" class="java-logo">
-      <div>
-        <h2>☕ Why Java?</h2>
-        <p>Java is not just a language—it’s a powerful ecosystem that runs everywhere. From Android to enterprise apps, Java powers billions of devices and systems globally.</p>
-      </div>
-    </div>
-    <div class="java-facts">
-      <div class="fact-box"><h3>⚡ Robust & Secure</h3><p>Built-in memory management and security.</p></div>
-      <div class="fact-box"><h3>🌍 Platform Independent</h3><p>Runs on all major systems with JVM.</p></div>
-      <div class="fact-box"><h3>🏗️ Vast Ecosystem</h3><p>Rich frameworks and libraries.</p></div>
-      <div class="fact-box"><h3>📈 Career Growth</h3><p>One of the most in-demand languages.</p></div>
-      <div class="fact-box"><h3>🔗 Get Started</h3><p><a href="https://www.oracle.com/java/technologies/javase-downloads.html" target="_blank">Download Java</a></p></div>
+  <!-- Projects -->
+  <section id="projects" class="py-20 max-w-7xl mx-auto px-6">
+    <h2 class="neon text-4xl md:text-5xl font-extrabold text-center mb-14">Featured Projects</h2>
+    <div class="grid md:grid-cols-2 gap-8 lg:gap-10">
+      <a href="calculator.html" class="card animated-border block group">
+        <h3 class="text-2xl font-bold mb-2">☕ Beauty Calculator</h3>
+        <p class="text-blue-100/90">JavaFX scientific calculator with history, keyboard shortcuts, and animated, tactile buttons.</p>
+        <div class="mt-4 flex flex-wrap gap-2">
+          <span class="badge">JavaFX</span><span class="badge">Scientific</span><span class="badge">Dark UI</span>
+        </div>
+      </a>
+      <a href="todo.html" class="card animated-border block group">
+        <h3 class="text-2xl font-bold mb-2">📝 Beauty Todo App</h3>
+        <p class="text-blue-100/90">Organize tasks with color-coded priorities and an elegant JavaFX interface.</p>
+        <div class="mt-4 flex flex-wrap gap-2">
+          <span class="badge">JavaFX</span><span class="badge">Productivity</span><span class="badge">Dark Mode</span>
+        </div>
+      </a>
+      <a href="tic-tac-toe.html" class="card animated-border block group">
+        <h3 class="text-2xl font-bold mb-2">🎮 Tic Tac Toe FX</h3>
+        <p class="text-blue-100/90">Play against AI with varying difficulty levels and a glowing, animated interface.</p>
+        <div class="mt-4 flex flex-wrap gap-2">
+          <span class="badge">AI</span><span class="badge">JavaFX</span><span class="badge">Multiplayer</span>
+        </div>
+      </a>
+      <a href="compiler.html" class="card animated-border block group">
+        <h3 class="text-2xl font-bold mb-2">⚡ Java Runner</h3>
+        <p class="text-blue-100/90">Run, test, and compile Java code online, with output previews and syntax highlights.</p>
+        <div class="mt-4 flex flex-wrap gap-2">
+          <span class="badge">Java</span><span class="badge">Compiler</span><span class="badge">Realtime</span>
+        </div>
+      </a>
     </div>
   </section>
 
-  <!-- Portfolio -->
-  <section id="portfolio">
-    <h2>🌟 My Best Projects</h2>
-    <div class="portfolio-grid">
-      <div class="project-card"><div class="project-icon">🖩</div><h3>Java Beauty Calculator</h3><p>A clean and interactive Java calculator app.</p><a href="https://github.com/anshumanjadiya1102/Java_Beauty_Calculator" target="_blank">View on GitHub</a></div>
-      <div class="project-card"><div class="project-icon">🎮</div><h3>Java Beauty Game</h3><p>A simple Java-based game with GUI.</p><a href="https://github.com/anshumanjadiya1102/Java_Beauty_Game" target="_blank">View on GitHub</a></div>
-      <div class="project-card"><div class="project-icon">📝</div><h3>Java Todo Manager</h3><p>Organize tasks easily with this Java app.</p><a href="https://github.com/anshumanjadiya1102/Java_Todo_Manager" target="_blank">View on GitHub</a></div>
-      <div class="project-card"><div class="project-icon">❌</div><h3>Java FX Tic Tac Toe</h3><p>A modern Tic Tac Toe with difficulty levels.</p><a href="https://github.com/anshumanjadiya1102/Java_FX_TicTacToe" target="_blank">View on GitHub</a></div>
-      <div class="project-card"><div class="project-icon">📒</div><h3>Java Notes App</h3><p>Store and manage notes with ease.</p><a href="https://github.com/anshumanjadiya1102/Java_Notes_App" target="_blank">View on GitHub</a></div>
-    </div>
+  <!-- About -->
+  <section id="about" class="py-20 max-w-7xl mx-auto px-6">
+    <h2 class="neon mb-10 text-4xl md:text-5xl font-extrabold text-center">About Me</h2>
+    <p class="text-blue-100/90 text-lg md:text-xl text-center max-w-4xl mx-auto">
+      I’m Anshuman Jadiya, a Java enthusiast creating polished, creative applications with smooth UX and modern aesthetics.  
+      My goal is to make Java not just functional, but visually mesmerizing.
+    </p>
   </section>
 
   <!-- Contact -->
-  <section id="contact" class="contact">
-    <h2>📬 Contact Me</h2>
-    <a href="mailto:anshuman.jadiya03@gmail.com">Email Me</a>
-    <a href="https://github.com/anshumanjadiya1102" target="_blank">GitHub</a>
-    <a href="https://dev.to/anshumanjadiya1102" target="_blank">Dev.to</a>
+  <section id="contact" class="contact py-20 text-center">
+    <h2 class="neon mb-10 text-4xl md:text-5xl font-extrabold">Contact</h2>
+    <div>
+      <a href="mailto:anshuman.jadiya@gmail.com">✉ Email</a>
+      <a href="https://github.com/anshumanjadiya1102" target="_blank">🐱 GitHub</a>
+      <a href="https://dev.to/anshumanjadiya1102" target="_blank">💼 Dev.to</a>
+    </div>
   </section>
-
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 Anshuman Jadiya | Java Beauty Suite ✨ | All rights reserved.</p>
-  </footer>
 
 </body>
 </html>
