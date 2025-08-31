@@ -2,7 +2,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Java-Beauty-Suite ☕</title>
+  <title>Java-Beauty-Suite ☕ -- Anshuman Jadiya</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
@@ -185,9 +185,21 @@ public class Main {
     <div class="max-w-5xl mx-auto px-6 text-center">
       <h2 class="neon text-4xl font-extrabold mb-6">Why Java?</h2>
       <p class="text-blue-100/90 text-lg">
-        Java blends reliability, massive ecosystem, and platform independence. With modern toolchains and polished UI frameworks,
-        it’s perfect for robust apps, games, and utilities that look as good as they run.
-      </p>
+ <section id="why-java" class="why-java">
+    <div class="java-container">
+      <img src="https://upload.wikimedia.org/wikipedia/en/3/30/Java_programming_language_logo.svg" alt="Java Logo" class="java-logo">
+      <div>
+        <p>Java is not just a language—it’s a powerful ecosystem that runs everywhere. From Android to enterprise apps, Java powers billions of devices and systems globally.</p>
+      </div>
+    </div>
+    <div class="java-facts">
+      <div class="fact-box"><h3>⚡ Robust & Secure</h3><p>Built-in memory management and security.</p></div>
+      <div class="fact-box"><h3>🌍 Platform Independent</h3><p>Runs on all major systems with JVM.</p></div>
+      <div class="fact-box"><h3>🏗️ Vast Ecosystem</h3><p>Rich frameworks and libraries.</p></div>
+      <div class="fact-box"><h3>📈 Career Growth</h3><p>One of the most in-demand languages.</p></div>
+      <div class="fact-box"><h3>🔗 Get Started</h3><p><a href="https://www.oracle.com/java/technologies/javase-downloads.html" target="_blank">Download Java</a></p></div>
+    </div>
+  </section>
     </div>
   </section>
 
@@ -195,13 +207,13 @@ public class Main {
   <section id="contact" class="py-20 border-t border-blue-900/40">
     <div class="max-w-4xl mx-auto px-6 text-center">
       <div class="card animated-border">
-        <h2 class="text-3xl font-extrabold mb-2">Let’s Connect</h2>
-        <p class="text-blue-100/90">💻 GitHub:
-          <a class="text-sky-300 underline decoration-dotted underline-offset-4" target="_blank" rel="noopener" href="https://github.com/anshumanjadiya1102">Anshuman Jadiya</a>
-        </p>
-        <p class="text-blue-100/90">📧 Email:
-          <a class="text-sky-300 underline decoration-dotted underline-offset-4" href="mailto:anshuman.jadiya03@gmail.com">anshuman.jadiya03@gmail.com</a>
-        </p>
+         <!-- Contact -->
+  <section id="contact" class="contact">
+    <h2>📬 Contact Me</h2>
+    <a href="mailto:anshuman.jadiya03@gmail.com">Email Me</a>
+    <a href="https://github.com/anshumanjadiya1102" target="_blank">GitHub</a>
+    <a href="https://dev.to/anshumanjadiya1102" target="_blank">Dev.to</a>
+  </section>
       </div>
     </div>
   </section>
@@ -293,5 +305,185 @@ public class Main {
     document.getElementById('sample1').onclick=()=>{codeEl.value=`public class Main{public static void main(String[] a){for(String s: a)System.out.println("arg="+s);} }`;};
     document.getElementById('sample2').onclick=()=>{codeEl.value=`public class Main{public static void main(String[] a){int s=0;for(int i=1;i<=10;i++)s+=i;System.out.println("sum="+s);} }`;};
   </script>
-</body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anshuman Jadiya - Java Beauty Suite</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color:#333;
+      background: linear-gradient(to bottom, #87CEEB, #c8e6c9);
+      overflow-x:hidden;
+    }
+
+    header {
+      background: rgba(255,255,255,0.9);
+      padding:15px 30px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position: sticky;
+      top:0;
+      z-index:1000;
+      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    header h1 { font-size:1.5rem; color:#2e7d32; }
+    nav a {
+      margin:0 15px;
+      text-decoration:none;
+      color:#333;
+      font-weight:bold;
+      transition: color 0.3s, text-shadow 0.3s;
+    }
+    nav a:hover { color:#2e7d32; text-shadow: 0 0 10px #81c784; }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      text-align:center;
+      padding: 80px 20px;
+      background: linear-gradient(to bottom, #fceabb, #f8b500);
+    }
+    .hero .sun {
+      position:absolute;
+      top:-100px;
+      left:50%;
+      transform:translateX(-50%);
+      width:300px;
+      height:300px;
+      background: radial-gradient(circle, #FFD700, #FFA500);
+      border-radius:50%;
+      z-index:0;
+      opacity:0.9;
+    }
+    .hero img {
+      width:200px;
+      height:200px;
+      border-radius:50%;
+      border:5px solid #fff;
+      z-index:1;
+      position:relative;
+      box-shadow:0 8px 20px rgba(0,0,0,0.3);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .hero img:hover { transform: scale(1.08); box-shadow:0 12px 25px rgba(0,0,0,0.5); }
+
+    .hero h2 { margin-top:20px; font-size:2.5rem; color:#2e7d32; }
+
+    section { padding:60px 20px; max-width:1200px; margin:auto; }
+    section h2 { text-align:center; margin-bottom:30px; font-size:2rem; color:#2e7d32; }
+
+    /* Why Java */
+    .why-java .java-container {
+      display:flex; align-items:center; gap:20px; margin-bottom:30px;
+    }
+    .why-java .java-logo { width:80px; transition: transform 0.3s; }
+    .why-java .java-logo:hover { transform: scale(1.1) rotate(10deg); }
+
+    .why-java .java-facts {
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
+      gap:20px;
+    }
+    .why-java .fact-box {
+      background:#fff;
+      padding:20px;
+      border-radius:12px;
+      box-shadow:0 4px 15px rgba(0,0,0,0.2);
+      transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    }
+    .why-java .fact-box:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow:0 8px 25px rgba(0,0,0,0.35);
+      background: #f0fff0;
+    }
+
+    /* Portfolio */
+    .portfolio-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
+      gap:20px;
+    }
+    .project-card {
+      background:#fff;
+      padding:20px;
+      border-radius:12px;
+      box-shadow:0 4px 15px rgba(0,0,0,0.2);
+      transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+      position:relative;
+    }
+    .project-card:hover {
+      transform: translateY(-8px) scale(1.05);
+      box-shadow:0 8px 25px rgba(0,0,0,0.35);
+      background: #f0fff0;
+    }
+    .project-icon {
+      font-size:1.5rem;
+      display:inline-block;
+      margin-bottom:10px;
+      transition: transform 0.3s, color 0.3s;
+    }
+    .project-card:hover .project-icon { transform: scale(1.3) rotate(10deg); color:#FFD700; }
+
+    /* Contact */
+    .contact { text-align:center; }
+    .contact a {
+      display:inline-block;
+      margin:10px;
+      text-decoration:none;
+      color:#fff;
+      background:#2e7d32;
+      padding:10px 20px;
+      border-radius:8px;
+      transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+    .contact a:hover {
+      background:#1b5e20;
+      transform: scale(1.1);
+      box-shadow:0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    /* Footer */
+    footer { text-align:center; padding:20px; background:#2e7d32; color:#fff; margin-top:40px; }
+
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>Java Beauty Suite ✨</h1>
+    <nav>
+      <a href="#why-java">Why Java</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="sun"></div>
+    <img src="https://github.com/anshumanjadiya1102.png" alt="Profile Image">
+    <h2>Hi, I'm Anshuman Jadiya ☕</h2>
+    <p>“Where creativity meets the beauty in Java”</p>
+  </section>
+ 
+
+  <!-- Portfolio -->
+  <section id="portfolio">
+    <h2>🌟 My Best Projects</h2>
+    <div class="portfolio-grid">
+      <div class="project-card"><div class="project-icon">🖩</div><h3>Java Beauty Calculator</h3><p>A clean and interactive Java calculator app.</p><a href="https://github.com/anshumanjadiya1102/Java_Beauty_Calculator" target="_blank">View on GitHub</a></div>
+      <div class="project-card"><div class="project-icon">🎮</div><h3>Java Beauty Game</h3><p>A simple Java-based game with GUI.</p><a href="https://github.com/anshumanjadiya1102/Java_Beauty_Game" target="_blank">View on GitHub</a></div>
+      <div class="project-card"><div class="project-icon">📝</div><h3>Java Todo Manager</h3><p>Organize tasks easily with this Java app.</p><a href="https://github.com/anshumanjadiya1102/Java_Todo_Manager" target="_blank">View on GitHub</a></div>
+      <div class="project-card"><div class="project-icon">❌</div><h3>Java FX Tic Tac Toe</h3><p>A modern Tic Tac Toe with difficulty levels.</p><a href="https://github.com/anshumanjadiya1102/Java_FX_TicTacToe" target="_blank">View on GitHub</a></div>
+      <div class="project-card"><div class="project-icon">📒</div><h3>Java Notes App</h3><p>Store and manage notes with ease.</p><a href="https://github.com/anshumanjadiya1102/Java_Notes_App" target="_blank">View on GitHub</a></div>
+    </div>
+  </section>
+  </body>
 </html>
+
