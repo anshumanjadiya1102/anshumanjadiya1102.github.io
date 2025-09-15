@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: http://jayantgoel001.github.io/sitemap_index.xml
