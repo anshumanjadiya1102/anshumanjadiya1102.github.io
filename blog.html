@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Anshuman Jadiya | Moving Blog</title>
+<style>
+  body {
+    margin:0; padding:40px;
+    font-family: "Segoe UI", sans-serif;
+    background: linear-gradient(120deg,#0f172a,#001219);
+    color:#fff; overflow:hidden;
+  }
+  .bg-wrap{position:fixed;inset:0;z-index:-3;overflow:hidden;}
+  .gradient{position:absolute;inset:-30%;background:linear-gradient(120deg,#ff6b6b,#ffd166,#6bffdc,#6b6bff);
+    filter:blur(60px);animation:moveGradient 35s linear infinite;opacity:0.95;}
+  .gradient.gradient-2{background:linear-gradient(60deg,#7b2ff7,#ff7bd6,#39dbe0);
+    animation-duration:60s;mix-blend-mode:screen;opacity:0.55;}
+  @keyframes moveGradient{0%{transform:translate3d(-10%,-10%,0)}50%{transform:translate3d(10%,10%,0)}100%{transform:translate3d(-10%,-10%,0)}}
+  h1{font-size:28px;margin-bottom:20px;text-align:center;}
+  .carousel-wrap{padding:14px;background:rgba(255,255,255,0.05);border-radius:16px;overflow:hidden;}
+  .post-strip{display:flex;gap:18px;align-items:stretch;padding:20px 6px;
+    animation:autoScroll 30s linear infinite;}
+  .post{min-width:280px;flex:0 0 280px;background:rgba(255,255,255,0.08);
+    border-radius:12px;padding:16px;}
+  .post h3{margin:6px 0;}
+  .post .meta{font-size:12px;color:#ddd;}
+  .post .excerpt{font-size:14px;line-height:1.4;}
+  .post a{display:inline-block;margin-top:8px;font-size:13px;color:#fff;text-decoration:none;
+    background:rgba(255,255,255,0.1);padding:6px 10px;border-radius:6px;}
+  @keyframes autoScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+  .socials {display:flex;flex-wrap:wrap;gap:10px;margin-top:10px;}
+  .socials img {border-radius:6px;}
+</style>
+</head>
+<body>
+<div class="bg-wrap"><div class="gradient"></div><div class="gradient gradient-2"></div></div>
+
+<main>
+  <h1>🚀 Anshuman Jadiya — Moving Blog</h1>
+  <section class="carousel-wrap" aria-label="Latest posts">
+    <div id="postStrip" class="post-strip"></div>
+  </section>
+</main>
+
+<script>
+const posts = [
+  {
+    title:"Welcome to My Blog",
+    date:"Sep 17, 2025",
+    excerpt:"This is my interactive moving blog. Stay tuned for my projects and updates!",
+    url:"https://github.com/anshumanjadiya1102"
+  },
+  {
+    title:"Connect With Me",
+    date:"Sep 2025",
+    excerpt:`Find me on all major platforms:`,
+    url:"#",
+    socials: `
+      <div class="socials">
+        <a href="https://github.com/anshumanjadiya1102"><img width="40" height="40" src="https://github.com/user-attachments/assets/b5df5c33-d971-4fd1-b0d7-36a56ec78eed" alt="GitHub" /></a>
+        <a href="mailto:anshuman.jadiya03@gmail.com"><img width="40" height="40" src="https://github.com/user-attachments/assets/8acb23a2-a55c-482f-a200-6a0115c5cf03" alt="Gmail" /></a>
+        <a href="https://gitlab.com/anshumanjadiya1102"><img width="40" height="40" src="https://github.com/user-attachments/assets/412140b6-9806-428c-bab4-25ab6b34897e" alt="GitLab" /></a>
+        <a href="https://discord.gg/68mtBJqRgs"><img width="40" height="40" src="https://github.com/user-attachments/assets/330d20c9-8752-4d16-a2f3-c1713bf99ce8" alt="Discord" /></a>
+        <a href="https://bitbucket.org/anshumanjadiya1102/workspace/overview/"><img width="40" height="40" src="https://github.com/user-attachments/assets/7b63823d-7042-42cc-a6bb-e1ae0f3a19de" alt="Bitbucket" /></a>
+        <a href="https://www.reddit.com/user/anshumanjadiya1102/"><img width="40" height="40" src="https://github.com/user-attachments/assets/6bf0430a-4ca2-44c8-b285-86691af657ed" alt="Reddit" /></a>
+        <a href="https://dev.to/anshumanjadiya1102"><img width="50" height="50" src="https://github.com/user-attachments/assets/fb616e3c-5a35-408f-975c-117cd5618ded" alt="Dev.to" /></a>
+        <a href="https://x.com/anshumanjadiya"><img width="40" height="40" src="https://github.com/user-attachments/assets/47d624d3-33e5-4146-a1c8-30ae62b17e4e" alt="Twitter" /></a>
+        <a href="https://forem.com/anshumanjadiya1102"><img width="40" height="40" src="https://github.com/user-attachments/assets/672eb0e9-9538-4000-a55f-40ea5307daf8" alt="Forem" /></a>
+        <a href="https://hashnode.com/@anshumanjadiya1102"><img width="40" height="40" src="https://github.com/user-attachments/assets/f7f3a640-c087-4b7c-9fe2-b6451822d8e4" alt="Hashnode" /></a>
+        <a href="https://stackoverflow.com/users/31370142/anshuman-jadiya"><img width="40" height="40" src="https://github.com/user-attachments/assets/4914c1d1-6742-417e-bd00-9755cdf598af" alt="StackOverflow" /></a>
+        <a href="https://in/anshuman-jadiya-a56929381"><img width="40" height="40" src="https://github.com/user-attachments/assets/104b06ff-717f-43b9-be3c-be404b5963e6" alt="LinkedIn" /></a>
+        <a href="https://@anshuman-jadiya03.bsky.social"><img width="40" height="40" src="https://github.com/user-attachments/assets/84daf12a-46a3-4296-b95c-17967a35efd5" alt="Bluesky" /></a>
+      </div>`
+  },
+  {
+    title:"Latest Project: Drive-for-Java",
+    date:"Aug 2025",
+    excerpt:"An open-source suite of Java tools that simplifies development. 🚀",
+    url:"https://github.com/anshumanjadiya1102/Drive-for-Java"
+  },
+  {
+    title:"Stay Tuned!",
+    date:"Coming Soon",
+    excerpt:"More blogs, tutorials, and projects will appear here with automatic scrolling ✨",
+    url:"#"
+  }
+];
+
+function makePostCard(p){
+  return `<article class="post">
+    <div class="meta">${p.date}</div>
+    <h3>${p.title}</h3>
+    <p class="excerpt">${p.excerpt}</p>
+    ${p.socials ? p.socials : `<a href="${p.url}" target="_blank">Read →</a>`}
+  </article>`;
+}
+
+const strip=document.getElementById('postStrip');
+strip.innerHTML=posts.map(makePostCard).join('')+posts.map(p=>makePostCard(p)).join('');
+</script>
+</body>
+</html>
