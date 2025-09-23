@@ -41,8 +41,10 @@
 
                 <label>Tech Stack (comma separated):</label>
                 <input type="text" id="techstack" placeholder="Java,React,Node.js">
+                <div id="techPreview" class="badge-preview"></div>
 
-                <label>Profile GIF URL:</label>
+                <label>Profile GIF:</label>
+                <div id="gifDropArea" class="drop-area">Drag & Drop GIF here or paste URL below</div>
                 <input type="text" id="gif" placeholder="https://...gif">
 
                 <label>Theme:</label>
@@ -73,7 +75,11 @@
 <script src="quotes.js"></script>
 <script src="templates.js"></script>
 <script src="github-api.js"></script>
+<script src="components/preview.js"></script>
+<script src="components/themeSelector.js"></script>
+<script src="components/confetti.js"></script>
 <script src="script.js"></script>
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
 </html>
+
