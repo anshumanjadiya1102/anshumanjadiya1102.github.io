@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang='en'>
+<head>
+<meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>Projects</title>
+<link rel='stylesheet' href='anshumanjadiya1102.github.io-1.1.1/games/style.css'>
+</head>
+<body>
+
+<!-- NAVBAR + SIDEBAR (added by assistant) -->
+<style>
+/* Sidebar and top nav styles (scoped) */
+#assist-shell{display:flex;gap:1rem;align-items:stretch;}
+#assist-sidebar{width:220px;flex:0 0 220px;padding:1rem;border-right:1px solid rgba(0,0,0,0.06);}
+#assist-content{flex:1;padding:1rem;}
+#assist-topnav{display:flex;justify-content:space-between;align-items:center;padding-bottom:0.5rem;}
+#assist-sidebar a{display:block;padding:0.35rem 0;color:inherit;text-decoration:none}
+@media (max-width:900px){#assist-sidebar{position:fixed;left:-260px;top:0;height:100%;background:var(--bg);z-index:999;transition:left .25s;padding:1rem;border-right:1px solid rgba(0,0,0,0.06)}#assist-sidebar.open{left:0} #assist-shell{flex-direction:column} }
+</style>
+<div id="assist-topnav">
+  <div><strong>Drive for Java Site</strong></div>
+  <div>
+    <button id="assist-toggle-sidebar" class="btn">Menu</button>
+  </div>
+</div>
+<div id="assist-shell">
+  <aside id="assist-sidebar" aria-hidden="false">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="games.html">Games</a>
+      <a href="blogs.html">Blogs</a>
+      <a href="drive-for-java.html">Drive-for-Java</a>
+      <a href="about.html">About</a>
+    </nav>
+  </aside>
+  <div id="assist-content">
+<h1>Projects</h1>
+<p>This page was created to organize your site while preserving your original files exactly. Replace this with your exact content if needed.</p>
+
+  </div> <!-- assist-content -->
+</div> <!-- assist-shell -->
+<script>
+(function(){
+  const btn = document.getElementById('assist-toggle-sidebar');
+  const sb = document.getElementById('assist-sidebar');
+  if(!btn || !sb) return;
+  btn.addEventListener('click', ()=>{ sb.classList.toggle('open'); });
+  function check(){ if(window.innerWidth>900){ sb.classList.remove('open'); sb.style.position='static'; } else { sb.style.position='fixed'; } }
+  window.addEventListener('resize', check); check();
+})();
+</script>
+
+<script src='anshumanjadiya1102.github.io-1.1.1/games/flappy/script.js'></script>
+
+</body>
+</html>
