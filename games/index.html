@@ -3,49 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <title>Game Hub</title>
-  <link rel="stylesheet" href="common.css">
-  <style>
-    .game-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      padding: 20px;
-    }
-    .card {
-      background: #44475a;
-      border-radius: 12px;
-      padding: 20px;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 0 10px #6272a4;
-      text-decoration: none;
-      color: #f8f8f2;
-      display: block;
-    }
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 15px #ff79c6;
-    }
-    .card h2 {
-      margin: 0 0 10px;
-      color: #50fa7b;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>🎮 Game Hub</h1>
-  <p>Select a game to play</p>
-  <div class="game-grid">
-    <a class="card" href="memory/"><h2>🃏 Memory</h2></a>
-    <a class="card" href="tictactoe/"><h2>❌⭕ Tic Tac Toe</h2></a>
-    <a class="card" href="snake/"><h2>🐍 Snake</h2></a>
-    <a class="card" href="number/"><h2>🔢 Number Guessing</h2></a>
-    <a class="card" href="flappy/"><h2>🏐 Flappy Ball</h2></a>
-    <a class="card" href="pong/"><h2>🏓 Pong</h2></a>
-    <a class="card" href="breakout/"><h2>🧱 Breakout</h2></a>
-    <a class="card" href="dino/"><h2>🦖 Dino Runner</h2></a>
-    <a class="card" href="platformer/"><h2>🕹️ Platformer</h2></a>
-    <a class="card" href="2048/"><h2>🔲 2048</h2></a>
-  </div>
+  <header>
+    <h1>🎮 Welcome to Anshuman Jadiya's Game Hub</h1>
+    <p>Select a game to play:</p>
+  </header>
+
+  <main class="games-grid">
+    <a href="memory/index.html" class="game-card">🧠 Memory</a>
+    <a href="tictactoe/index.html" class="game-card">❌ Tic Tac Toe</a>
+    <a href="snake/index.html" class="game-card">🐍 Snake</a>
+    <a href="number/index.html" class="game-card">🔢 Number Guessing</a>
+    <a href="flappy/index.html" class="game-card">🏐 Flappy Ball</a>
+    <a href="pong/index.html" class="game-card">🏓 Pong</a>
+    <a href="breakout/index.html" class="game-card">🧱 Breakout</a>
+    <a href="asteroids/index.html" class="game-card">🚀 Asteroids</a>
+    <a href="platformer/index.html" class="game-card">🏃 Platformer</a>
+  </main>
+
+  <footer>
+    <p>© 2025 Anshuman Jadiya | All games in Dracula dark theme</p>
+  </footer>
 </body>
 </html>
 
