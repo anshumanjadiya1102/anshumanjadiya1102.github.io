@@ -1,115 +1,103 @@
-const canvas = document.getElementById("gameCanvas");
-const ctx = canvas.getContext("2d");
+let canvas = document.getElementById("gameCanvas");
+let ctx = canvas.getContext("2d");
 
-// Ball
-let ballX = 50;
-let ballY = canvas.height / 2;
-let ballRadius = 12;
-let gravity = 0.5;
-let lift = -8;
-let velocity = 0;
-
-// Pipes
+let ball, gravity, lift, velocity;
 let pipes = [];
-let pipeWidth = 60;
-let pipeGap = 140;
 let frame = 0;
-
-// Score
 let score = 0;
-let gameOver = false;
+let gameRunning = false;
+let pipeGap = 120;
+let pipeSpeed = 2;
 
-// Input
-document.addEventListener("keydown", (e) => {
-  if (e.code === "Space") jump();
-});
-canvas.addEventListener("click", jump);
-
-function jump() {
-  if (gameOver) return;
-  velocity = lift;
-}
-
-function drawBall() {
-  ctx.beginPath();
-  ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
-  ctx.fillStyle = "#ff4757";
-  ctx.fill();
-  ctx.closePath();
-}
-
-function drawPipes() {
-  pipes.forEach(pipe => {
-    ctx.fillStyle = "#2ed573";
-    ctx.fillRect(pipe.x, 0, pipeWidth, pipe.top);
-    ctx.fillRect(pipe.x, canvas.height - pipe.bottom, pipeWidth, pipe.bottom);
-  });
-}
-
-function updatePipes() {
-  if (frame % 100 === 0) {
-    let top = Math.random() * (canvas.height - pipeGap - 100) + 20;
-    let bottom = canvas.height - top - pipeGap;
-    pipes.push({ x: canvas.width, top: top, bottom: bottom });
+function startGame() {
+  let diff = document.getElementById("difficulty").value;
+  if (diff === "easy") {
+    pipeGap = 150; pipeSpeed = 2;
+  } else if (diff === "medium") {
+    pipeGap = 120; pipeSpeed = 3;
+  } else {
+    pipeGap = 100; pipeSpeed = 4;
   }
 
-  pipes.forEach(pipe => {
-    pipe.x -= 2;
+  ball = { x: 50, y: canvas.height / 2, radius: 12 };
+  gravity = 0.5;
+  lift = -8;
+  velocity = 0;
+  pipes = [];
+  frame = 0;
+  score = 0;
+  gameRunning = true;
 
-    // Collision detection
-    if (
-      ballX + ballRadius > pipe.x &&
-      ballX - ballRadius < pipe.x + pipeWidth &&
-      (ballY - ballRadius < pipe.top || ballY + ballRadius > canvas.height - pipe.bottom)
-    ) {
-      gameOver = true;
-    }
+  document.getElementById("score").innerText = "Score: 0";
 
-    // Scoring
-    if (pipe.x + pipeWidth === ballX) {
-      score++;
-    }
-  });
-
-  // Remove off-screen pipes
-  pipes = pipes.filter(pipe => pipe.x + pipeWidth > 0);
+  loop();
 }
 
-function drawScore() {
-  ctx.fillStyle = "#333";
-  ctx.font = "20px Arial";
-  ctx.fillText("Score: " + score, 10, 25);
-}
-
-function update() {
-  if (gameOver) {
-    ctx.fillStyle = "rgba(0,0,0,0.5)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "#fff";
-    ctx.font = "30px Arial";
-    ctx.fillText("Game Over!", 120, canvas.height / 2);
-    ctx.font = "20px Arial";
-    ctx.fillText("Final Score: " + score, 140, canvas.height / 2 + 40);
-    return;
-  }
+function loop() {
+  if (!gameRunning) return;
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  // Ball physics
+  // Ball
   velocity += gravity;
-  ballY += velocity;
+  ball.y += velocity;
 
-  if (ballY + ballRadius > canvas.height || ballY - ballRadius < 0) {
-    gameOver = true;
+  ctx.beginPath();
+  ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+  ctx.fillStyle = "#ffb86c";
+  ctx.fill();
+  ctx.closePath();
+
+  // Pipes
+  if (frame % 90 === 0) {
+    let pipeHeight = Math.random() * (canvas.height - pipeGap - 50) + 20;
+    pipes.push({ x: canvas.width, y: pipeHeight });
   }
 
-  drawBall();
-  drawPipes();
-  updatePipes();
-  drawScore();
+  for (let i = pipes.length - 1; i >= 0; i--) {
+    let pipe = pipes[i];
+    pipe.x -= pipeSpeed;
+
+    ctx.fillStyle = "#50fa7b";
+    ctx.fillRect(pipe.x, 0, 40, pipe.y);
+    ctx.fillRect(pipe.x, pipe.y + pipeGap, 40, canvas.height - pipe.y - pipeGap);
+
+    if (pipe.x + 40 < 0) {
+      pipes.splice(i, 1);
+      score++;
+      document.getElementById("score").innerText = "Score: " + score;
+    }
+
+    // Collision
+    if (
+      ball.x + ball.radius > pipe.x &&
+      ball.x - ball.radius < pipe.x + 40 &&
+      (ball.y - ball.radius < pipe.y || ball.y + ball.radius > pipe.y + pipeGap)
+    ) {
+      endGame();
+    }
+  }
+
+  // Floor / Ceiling collision
+  if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) {
+    endGame();
+  }
 
   frame++;
-  requestAnimationFrame(update);
+  requestAnimationFrame(loop);
 }
 
-update();
+function endGame() {
+  gameRunning = false;
+  ctx.fillStyle = "#ff5555";
+  ctx.font = "24px Arial";
+  ctx.fillText("💀 Game Over! Final Score: " + score, 40, canvas.height / 2);
+}
+
+document.addEventListener("keydown", function (e) {
+  if (e.code === "Space") velocity = lift;
+});
+
+canvas.addEventListener("mousedown", function () {
+  velocity = lift;
+});
