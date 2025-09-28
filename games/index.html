@@ -2,48 +2,50 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🎮 Game Hub</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Game Hub</title>
+  <link rel="stylesheet" href="common.css">
+  <style>
+    .game-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .card {
+      background: #44475a;
+      border-radius: 12px;
+      padding: 20px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 0 10px #6272a4;
+      text-decoration: none;
+      color: #f8f8f2;
+      display: block;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 15px #ff79c6;
+    }
+    .card h2 {
+      margin: 0 0 10px;
+      color: #50fa7b;
+    }
+  </style>
 </head>
 <body>
-  <h1>🎮 Welcome to the Game Hub</h1>
-  <p>Select a game to play:</p>
-
+  <h1>🎮 Game Hub</h1>
+  <p>Select a game to play</p>
   <div class="game-grid">
-    <a href="memory/" class="game-card">
-      <h2>🃏 Memory Game</h2>
-      <p>Match all the pairs!</p>
-    </a>
-
-    <a href="tictactoe/" class="game-card">
-      <h2>❌ Tic Tac Toe ⭕</h2>
-      <p>Classic 2-player game</p>
-    </a>
-
-    <a href="snake/" class="game-card">
-      <h2>🐍 Snake</h2>
-      <p>Eat food and grow!</p>
-    </a>
-
-    <a href="number/" class="game-card">
-      <h2>🔢 Number Guessing</h2>
-      <p>Can you find the secret number?</p>
-    </a>
-    <div class="game-card"> <a href="flappy/index.html">
-  <h2> 🎊 Flappy Ball</h2>
- <p>Keep the ball in the air!</p>
- Play
-</div>
-    </a>
-     <a href="pong/index.html">
-<div class="game-card">
- <h2>Pong</h2>
-  <p>Play against the computer.</p>
-Play
-</div>
-       </a>
-
+    <a class="card" href="memory/"><h2>🃏 Memory</h2></a>
+    <a class="card" href="tictactoe/"><h2>❌⭕ Tic Tac Toe</h2></a>
+    <a class="card" href="snake/"><h2>🐍 Snake</h2></a>
+    <a class="card" href="number/"><h2>🔢 Number Guessing</h2></a>
+    <a class="card" href="flappy/"><h2>🏐 Flappy Ball</h2></a>
+    <a class="card" href="pong/"><h2>🏓 Pong</h2></a>
+    <a class="card" href="breakout/"><h2>🧱 Breakout</h2></a>
+    <a class="card" href="dino/"><h2>🦖 Dino Runner</h2></a>
+    <a class="card" href="platformer/"><h2>🕹️ Platformer</h2></a>
+    <a class="card" href="2048/"><h2>🔲 2048</h2></a>
   </div>
 </body>
 </html>
+
