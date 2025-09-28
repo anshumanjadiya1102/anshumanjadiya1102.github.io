@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Breakout</title>
+  <link rel="stylesheet" href="../common.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>🧱 Breakout</h1>
+  <div id="menu">
+    <label for="difficulty">Difficulty:</label>
+    <select id="difficulty">
+      <option value="easy">Easy</option>
+      <option value="medium">Medium</option>
+      <option value="hard">Hard</option>
+    </select>
+    <button onclick="startGame()">Start Game</button>
+  </div>
+  <canvas id="breakoutCanvas" width="480" height="320"></canvas>
+  <p id="score">Score: 0</p>
+  <script src="script.js"></script>
+</body>
+</html>
