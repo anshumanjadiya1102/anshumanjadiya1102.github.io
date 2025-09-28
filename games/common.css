@@ -1,0 +1,69 @@
+/* Common Dracula Theme for all games */
+body {
+  background: #282a36;
+  color: #f8f8f2;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+h1, h2 {
+  color: #50fa7b;
+  margin: 20px 0 10px;
+  text-shadow: 0 0 5px #50fa7b;
+}
+
+p {
+  color: #f8f8f2;
+}
+
+canvas {
+  display: block;
+  margin: 20px auto;
+  border: 2px solid #f8f8f2;
+  background: #1e1f29;
+  box-shadow: 0 0 10px #6272a4;
+}
+
+/* Menu container */
+#menu {
+  background: #44475a;
+  padding: 15px;
+  border-radius: 12px;
+  margin: 15px auto;
+  display: inline-block;
+  box-shadow: 0 0 10px #bd93f9;
+}
+
+/* Buttons */
+button, select {
+  padding: 10px 15px;
+  margin: 8px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+button {
+  background: #bd93f9;
+  color: #fff;
+}
+
+button:hover {
+  background: #ff79c6;
+  box-shadow: 0 0 10px #ff79c6;
+}
+
+select {
+  background: #6272a4;
+  color: #f8f8f2;
+}
+
+select:hover {
+  box-shadow: 0 0 8px #50fa7b;
+}
+
+
