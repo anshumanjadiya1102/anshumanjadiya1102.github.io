@@ -1,0 +1,14 @@
+#platformerCanvas {
+  background: #282a36;
+  display: block;
+  margin: 20px auto;
+  border: 2px solid #6272a4;
+  border-radius: 8px;
+  box-shadow: 0 0 20px #44475a;
+}
+#score {
+  text-align: center;
+  font-size: 20px;
+  margin-top: 10px;
+  color: #50fa7b;
+}
