@@ -1,12 +1,12 @@
-body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  background: linear-gradient(135deg, #d4fc79, #96e6a1);
-  padding: 20px;
+#gameCanvas {
+  background: #1e1f29;
+  border: 2px solid #f8f8f2;
+  margin-top: 20px;
+  box-shadow: 0 0 10px #6272a4;
 }
 
-canvas {
-  background: #111;
-  display: block;
-  margin: 20px auto;
+#status {
+  margin-top: 10px;
+  font-size: 18px;
 }
+
