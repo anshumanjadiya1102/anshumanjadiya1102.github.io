@@ -1,0 +1,107 @@
+/* General body */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #282a36;
+  color: #f8f8f2;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+/* Headings */
+h1, h2, h3 {
+  color: #50fa7b;
+  margin-top: 20px;
+}
+
+/* Paragraphs */
+p {
+  color: #f8f8f2;
+}
+
+/* Buttons */
+button {
+  background-color: #44475a;
+  color: #f8f8f2;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 5px #6272a4;
+}
+
+button:hover {
+  background-color: #6272a4;
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #50fa7b;
+}
+
+/* Select dropdowns */
+select {
+  background-color: #44475a;
+  color: #f8f8f2;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 0 5px #6272a4;
+  transition: all 0.2s ease;
+}
+
+select:hover, select:focus {
+  background-color: #6272a4;
+  box-shadow: 0 0 15px #50fa7b;
+  outline: none;
+}
+
+/* Inputs */
+input[type="number"], input[type="text"] {
+  background-color: #44475a;
+  color: #f8f8f2;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 16px;
+  text-align: center;
+  box-shadow: 0 0 5px #6272a4;
+  transition: all 0.2s ease;
+}
+
+input[type="number"]:focus, input[type="text"]:focus {
+  outline: none;
+  box-shadow: 0 0 15px #50fa7b;
+}
+
+/* Canvas common */
+canvas {
+  border-radius: 8px;
+  box-shadow: 0 0 15px #44475a;
+  display: block;
+  margin: 20px auto;
+}
+
+/* Game menu */
+#menu {
+  margin: 20px 0;
+}
+
+/* Score text */
+#score, #status, #instruction, #result {
+  font-size: 18px;
+  color: #50fa7b;
+  margin-top: 10px;
+}
+
+/* Hover effect for clickable elements */
+a, .game-card {
+  transition: all 0.2s ease;
+}
+
+a:hover, .game-card:hover {
+  transform: scale(1.05);
+  color: #50fa7b;
+  text-shadow: 0 0 5px #50fa7b;
+}
