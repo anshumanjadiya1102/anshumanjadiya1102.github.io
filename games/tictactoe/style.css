@@ -1,28 +1,25 @@
-body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  background: linear-gradient(135deg, #f6d365, #fda085);
-  padding: 20px;
-}
-
-.board {
+#board {
   display: grid;
   grid-template-columns: repeat(3, 100px);
-  gap: 5px;
-  margin: 20px auto;
+  grid-gap: 5px;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 .cell {
   width: 100px;
   height: 100px;
-  background: white;
-  font-size: 2rem;
+  background: #44475a;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  font-size: 36px;
+  border-radius: 8px;
   cursor: pointer;
+  transition: all 0.2s;
 }
 
-.cell.taken {
-  cursor: not-allowed;
+.cell:hover {
+  background: #6272a4;
+  box-shadow: 0 0 10px #ff79c6;
 }
