@@ -2,17 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Number Guessing Game</title>
+  <title>Number Guessing</title>
+  <link rel="stylesheet" href="../common.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <h1>🔢 Number Guessing Game</h1>
-  <p>Guess a number between 1 and 100</p>
-  <input type="number" id="guess" placeholder="Enter guess">
-  <button id="check">Check</button>
-  <p id="message"></p>
-  <button id="restart">Restart</button>
+  <div id="menu">
+    <label for="difficulty">Difficulty:</label>
+    <select id="difficulty">
+      <option value="easy">Easy (1-10)</option>
+      <option value="medium">Medium (1-50)</option>
+      <option value="hard">Hard (1-100)</option>
+    </select>
+    <button onclick="startGame()">Start Game</button>
+  </div>
+  <div id="game">
+    <p id="instruction"></p>
+    <input type="number" id="guessInput" placeholder="Enter guess" disabled>
+    <button id="guessBtn" onclick="makeGuess()" disabled>Guess</button>
+    <p id="result"></p>
+  </div>
   <script src="script.js"></script>
 </body>
 </html>
