@@ -18,3 +18,4 @@ guessBtn.addEventListener("click", ()=>{
 
 function saveHighScore(key, s){ const prev=Number(localStorage.getItem(key)||0); if (s>prev){ localStorage.setItem(key,s); window.refreshLeaderboard && window.refreshLeaderboard(); } }
 
+
