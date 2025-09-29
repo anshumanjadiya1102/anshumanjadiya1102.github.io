@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Memory Game</title>
+  <meta charset="utf-8">
+  <title>Memory</title>
   <link rel="stylesheet" href="../common.css">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <h1>🃏 Memory Game</h1>
+<body class="center">
+  <h1>🧠 Memory</h1>
   <div id="menu">
-    <label for="difficulty">Difficulty:</label>
+    <label class="label">Difficulty</label>
     <select id="difficulty">
-      <option value="easy">Easy</option>
-      <option value="medium">Medium</option>
-      <option value="hard">Hard</option>
+      <option value="easy">Easy (4 pairs)</option>
+      <option value="medium" selected>Medium (6 pairs)</option>
+      <option value="hard">Hard (8 pairs)</option>
     </select>
-    <button onclick="startGame()">Start Game</button>
+    <button id="startBtn">Start</button>
   </div>
-  <div id="game-board"></div>
+
+  <div id="board" class="center"></div>
+  <p id="status" class="info"></p>
+
   <script src="script.js"></script>
 </body>
 </html>
+
 
