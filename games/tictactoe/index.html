@@ -1,23 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <title>Tic Tac Toe</title>
   <link rel="stylesheet" href="../common.css">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="center">
   <h1>❌⭕ Tic Tac Toe</h1>
   <div id="menu">
-    <label for="difficulty">Difficulty:</label>
-    <select id="difficulty">
-      <option value="easy">Easy</option>
-      <option value="hard">Hard</option>
-    </select>
-    <button onclick="startGame()">Start Game</button>
+    <label class="label">Difficulty</label>
+    <select id="difficulty"><option>easy</option><option selected>hard</option></select>
+    <button id="startBtn">Start</button>
   </div>
-  <div id="board"></div>
-  <p id="status"></p>
+  <div id="board" class="center"></div>
+  <p id="status" class="info"></p>
   <script src="script.js"></script>
 </body>
 </html>
