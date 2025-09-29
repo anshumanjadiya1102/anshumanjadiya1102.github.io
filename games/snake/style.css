@@ -1,23 +1,8 @@
-/* Dracula color palette */
-:root {
-    --background: #282a36;
-    --current-line: #44475a;
-    --foreground: #f8f8f2;
-    --comment: #6272a4;
-    --cyan: #8be9fd;
-    --green: #50fa7b;
-    --orange: #ffb86c;
-    --pink: #ff79c6;
-    --purple: #bd93f9;
-    --red: #ff5555;
-    --yellow: #f1fa8c;
-}
-
 body {
     margin: 0;
     font-family: 'Courier New', monospace;
-    background-color: var(--background);
-    color: var(--foreground);
+    background-color: #282a36;
+    color: #f8f8f2;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,8 +14,8 @@ body {
 }
 
 canvas {
-    background-color: var(--current-line);
-    border: 3px solid var(--purple);
+    background-color: #44475a;
+    border: 3px solid #bd93f9;
     margin-top: 10px;
     border-radius: 10px;
 }
@@ -39,17 +24,17 @@ button, select {
     padding: 7px 15px;
     margin: 5px;
     font-size: 16px;
-    background-color: var(--current-line);
-    color: var(--foreground);
-    border: 1px solid var(--purple);
+    background-color: #44475a;
+    color: #f8f8f2;
+    border: 1px solid #bd93f9;
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
 button:hover, select:hover {
-    background-color: var(--purple);
-    color: var(--background);
+    background-color: #bd93f9;
+    color: #282a36;
 }
 
 ul {
@@ -57,26 +42,13 @@ ul {
     display: inline-block;
     list-style-type: disc;
     margin-left: 20px;
-    color: var(--foreground);
+    color: #f8f8f2;
 }
 
 h1 {
-    color: var(--pink);
+    color: #ff79c6;
 }
 
 p {
-    color: var(--foreground);
-}
-
-/* Snake colors */
-.snake-head {
-    background-color: var(--green);
-}
-
-.snake-mouth {
-    background-color: var(--red);
-}
-
-.food {
-    background-color: var(--yellow);
+    color: #f8f8f2;
 }
