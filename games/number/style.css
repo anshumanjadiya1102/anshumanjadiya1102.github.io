@@ -1,19 +1,2 @@
-#game {
-  margin-top: 20px;
-}
-
-#guessInput {
-  padding: 10px;
-  border-radius: 6px;
-  border: none;
-  background: #44475a;
-  color: #f8f8f2;
-  width: 120px;
-  text-align: center;
-  margin-right: 10px;
-}
-
-#guessInput:focus {
-  outline: none;
-  box-shadow: 0 0 10px #50fa7b;
-}
+@import "../common.css";
+input { width:140px; text-align:center; }
