@@ -7,17 +7,11 @@ const startScreen = document.getElementById('startScreen');
 const gameScreen = document.getElementById('gameScreen');
 const difficultySelect = document.getElementById('difficulty');
 
-// Dracula theme colors
 const COLORS = {
-    background: '#282a36',
     canvasBg: '#44475a',
     snake: '#50fa7b',
     mouth: '#ff5555',
-    food: '#f1fa8c',
-    border: '#bd93f9',
-    text: '#f8f8f2',
-    buttonHover: '#bd93f9',
-    buttonTextHover: '#282a36',
+    food: '#f1fa8c'
 };
 
 let gridSize = 30;
@@ -30,7 +24,7 @@ let score = 0;
 let gameInterval;
 let speed = 100;
 
-// Show game screen and start game
+// Show game screen and start
 nextBtn.addEventListener('click', () => {
     startScreen.style.display = 'none';
     gameScreen.style.display = 'block';
@@ -67,13 +61,15 @@ function drawTile(x, y, color) {
 
 function drawSnake() {
     snake.forEach((segment, index) => {
-        if(index === 0) {
-            // Head
+        if(index === 0){
+            // Snake head
             drawTile(segment.x, segment.y, COLORS.snake);
-            // Mouth
-            drawTile(segment.x + 0.25, segment.y + 0.25, COLORS.mouth, tileSize*0.5);
+            // Mouth (small rectangle inside head)
+            const mouthSize = tileSize * 0.4;
+            const mouthX = segment.x * tileSize + (tileSize - mouthSize)/2;
+            const mouthY = segment.y * tileSize + (tileSize - mouthSize)/2;
             ctx.fillStyle = COLORS.mouth;
-            ctx.fillRect(segment.x * tileSize + tileSize/4, segment.y * tileSize + tileSize/4, tileSize/2, tileSize/2);
+            ctx.fillRect(mouthX, mouthY, mouthSize, mouthSize);
         } else {
             drawTile(segment.x, segment.y, COLORS.snake);
         }
@@ -108,18 +104,20 @@ function gameLoop() {
         snake.pop();
     }
 
-    // Draw everything
+    // Draw canvas background
     ctx.fillStyle = COLORS.canvasBg;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+
     drawFood();
     drawSnake();
 }
 
+// Arrow key input
 document.addEventListener('keydown', e => {
     switch(e.key) {
-        case 'ArrowUp': newDirection = {x:0, y:-1}; break;
-        case 'ArrowDown': newDirection = {x:0, y:1}; break;
-        case 'ArrowLeft': newDirection = {x:-1, y:0}; break;
-        case 'ArrowRight': newDirection = {x:1, y:0}; break;
+        case 'ArrowUp': if(direction.y !== 1) newDirection = {x:0, y:-1}; break;
+        case 'ArrowDown': if(direction.y !== -1) newDirection = {x:0, y:1}; break;
+        case 'ArrowLeft': if(direction.x !== 1) newDirection = {x:-1, y:0}; break;
+        case 'ArrowRight': if(direction.x !== -1) newDirection = {x:1, y:0}; break;
     }
 });
