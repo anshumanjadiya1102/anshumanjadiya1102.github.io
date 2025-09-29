@@ -5,12 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dark Snake Game</title>
 <link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
 </head>
 <body>
-<div class="game-container">
+<div class="snake-container">
 
     <!-- Start/Guidelines Screen -->
-    <div id="startScreen">
+    <div id="snakeStartScreen">
         <h1>Dark Snake Game</h1>
         <p>Welcome to the Dark Snake Game!</p>
         <ul>
@@ -19,25 +20,24 @@
             <li>Avoid hitting walls or yourself.</li>
             <li>Select difficulty before starting.</li>
         </ul>
-        <label for="difficulty">Difficulty:</label>
-        <select id="difficulty">
+        <label for="snakeDifficulty">Difficulty:</label>
+        <select id="snakeDifficulty">
             <option value="5">Easy</option>
             <option value="10" selected>Medium</option>
             <option value="15">Hard</option>
         </select>
         <br><br>
-        <button id="nextBtn">Next</button>
+        <button id="snakeNextBtn">Next</button>
     </div>
 
     <!-- Game Screen -->
-    <div id="gameScreen" style="display:none;">
-        <canvas id="gameCanvas" width="600" height="600"></canvas>
-        <p>Score: <span id="score">0</span></p>
-        <button id="restartBtn">Restart</button>
+    <div id="snakeGameScreen" style="display:none;">
+        <canvas id="snakeCanvas" width="600" height="600"></canvas>
+        <p>Score: <span id="snakeScore">0</span></p>
+        <button id="snakeRestartBtn">Restart</button>
     </div>
 
 </div>
-<script src="script.js"></script>
 </body>
 </html>
 
