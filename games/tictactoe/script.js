@@ -1,114 +1,61 @@
-let board, cells, currentPlayer, gameActive;
+const boardEl = document.getElementById("board"), startBtn = document.getElementById("startBtn"), statusEl = document.getElementById("status");
+let board, player='X', ai='O', playing=false;
 
-function startGame() {
-  let container = document.getElementById("board");
-  container.innerHTML = "";
-  board = ["", "", "", "", "", "", "", "", ""];
-  currentPlayer = "X";
-  gameActive = true;
-
-  for (let i = 0; i < 9; i++) {
-    let cell = document.createElement("div");
-    cell.classList.add("cell");
-    cell.dataset.index = i;
-    cell.addEventListener("click", () => handleCellClick(i));
-    container.appendChild(cell);
-  }
-  document.getElementById("status").innerText = "Your turn (X)";
+startBtn.addEventListener("click", init);
+function init(){
+  board = Array(9).fill(null); playing=true; render(); statusEl.textContent = "Your turn (X)";
 }
 
-function handleCellClick(i) {
-  if (!gameActive || board[i] !== "") return;
-  board[i] = currentPlayer;
-  updateBoard();
-
-  if (checkWin(currentPlayer)) {
-    document.getElementById("status").innerText = `${currentPlayer} wins! 🎉`;
-    gameActive = false;
-    return;
-  }
-  if (!board.includes("")) {
-    document.getElementById("status").innerText = "It's a draw!";
-    gameActive = false;
-    return;
-  }
-
-  currentPlayer = currentPlayer === "X" ? "O" : "X";
-  if (currentPlayer === "O") {
-    document.getElementById("status").innerText = "Computer's turn...";
-    setTimeout(computerMove, 500);
-  } else {
-    document.getElementById("status").innerText = "Your turn (X)";
-  }
-}
-
-function computerMove() {
-  let difficulty = document.getElementById("difficulty").value;
-
-  let move;
-  if (difficulty === "easy") {
-    let emptyCells = board.map((v, i) => v === "" ? i : null).filter(v => v !== null);
-    move = emptyCells[Math.floor(Math.random() * emptyCells.length)];
-  } else {
-    // simple AI: try to win, then block, else random
-    move = findBestMove() ?? randomMove();
-  }
-
-  board[move] = "O";
-  updateBoard();
-
-  if (checkWin("O")) {
-    document.getElementById("status").innerText = "Computer wins! 🤖";
-    gameActive = false;
-    return;
-  }
-  if (!board.includes("")) {
-    document.getElementById("status").innerText = "It's a draw!";
-    gameActive = false;
-    return;
-  }
-
-  currentPlayer = "X";
-  document.getElementById("status").innerText = "Your turn (X)";
-}
-
-function updateBoard() {
-  document.querySelectorAll(".cell").forEach((cell, i) => {
-    cell.innerText = board[i];
+function render(){
+  boardEl.innerHTML='';
+  board.forEach((v,i)=>{
+    const cell = document.createElement("div"); cell.className='cell'; cell.dataset.i=i; cell.textContent = v? v: '';
+    cell.addEventListener("click", ()=> cellClick(i));
+    boardEl.appendChild(cell);
   });
 }
 
-function checkWin(player) {
-  const winPatterns = [
-    [0,1,2],[3,4,5],[6,7,8],
-    [0,3,6],[1,4,7],[2,5,8],
-    [0,4,8],[2,4,6]
-  ];
-  return winPatterns.some(pattern => pattern.every(i => board[i] === player));
+function cellClick(i){
+  if(!playing || board[i]) return;
+  board[i]=player; render();
+  if(checkWin(player)){ statusEl.textContent = "You Win!"; gameOver(player); return; }
+  if(board.every(Boolean)){ statusEl.textContent="Draw"; gameOver(); return; }
+  statusEl.textContent = "Computer's turn...";
+  setTimeout(() => { aiMove(); render(); }, 300);
 }
 
-function findBestMove() {
-  // try to win
-  for (let i=0; i<9; i++) {
-    if (board[i] === "") {
-      board[i] = "O";
-      if (checkWin("O")) { board[i] = ""; return i; }
-      board[i] = "";
-    }
+function aiMove(){
+  const diff = document.getElementById("difficulty").value;
+  let move;
+  if (diff === "easy") {
+    const empt = board.map((v,idx)=> v?null:idx).filter(v=>v!==null); move = empt[Math.floor(Math.random()*empt.length)];
+  } else {
+    // win/block simple logic
+    move = findWinningMove(ai) ?? findWinningMove(player) ?? randomMove();
   }
-  // try to block
-  for (let i=0; i<9; i++) {
-    if (board[i] === "") {
-      board[i] = "X";
-      if (checkWin("X")) { board[i] = ""; return i; }
-      board[i] = "";
-    }
-  }
+  if (move===undefined) return;
+  board[move]=ai;
+  if (checkWin(ai)){ statusEl.textContent="Computer wins"; gameOver(ai); return; }
+  if (board.every(Boolean)){ statusEl.textContent="Draw"; gameOver(); return; }
+  statusEl.textContent = "Your turn (X)";
+}
+
+function findWinningMove(p){
+  const wins = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+  for (let i=0;i<9;i++) if(!board[i]){ board[i]=p; if(checkWin(p)){ board[i]=null; return i; } board[i]=null; }
   return null;
 }
+function randomMove(){ const empt = board.map((v,idx)=> v?null:idx).filter(i=>i!==null); return empt[Math.floor(Math.random()*empt.length)]; }
+function checkWin(p){ const wins = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]; return wins.some(r=> r.every(i=> board[i]===p)); }
+function gameOver(winner){
+  playing=false;
+  // scoring: X win=100, AI win=50, draw=25
+  let score = winner===player? 100 : winner===ai? 50 : 25;
+  saveHighScore("tictactoeHighScore", score);
+}
 
-function randomMove() {
-  let emptyCells = board.map((v,i)=> v===""?i:null).filter(v=>v!==null);
-  return emptyCells[Math.floor(Math.random()*emptyCells.length)];
+function saveHighScore(key, score){
+  const prev = Number(localStorage.getItem(key)||0);
+  if (score>prev) { localStorage.setItem(key, score); window.refreshLeaderboard && window.refreshLeaderboard(); }
 }
 
