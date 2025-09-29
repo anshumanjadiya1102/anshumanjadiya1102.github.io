@@ -1,53 +1,62 @@
-let symbols = ["🍎","🍌","🍇","🍒","🥝","🍍","🥕","🍆"];
-let board = document.getElementById("game-board");
-let flippedCards = [];
-let matched = 0;
+const board = document.getElementById("board");
+const startBtn = document.getElementById("startBtn");
+const status = document.getElementById("status");
+const EMOJIS = ["🍎","🍌","🍇","🍒","🥝","🍍","🍑","🍉","🥕","🍓"];
 
-function startGame() {
+let cards = [], openCards = [], matched = 0, pairs = 6;
+
+startBtn.addEventListener("click", startGame);
+
+function startGame(){
+  const diff = document.getElementById("difficulty").value;
+  pairs = diff === "easy" ? 4 : diff === "medium" ? 6 : 8;
+  const chosen = EMOJIS.slice(0, pairs);
+  cards = shuffle([...chosen, ...chosen]);
+  matched = 0; openCards = [];
   board.innerHTML = "";
-  matched = 0;
-  flippedCards = [];
-  let diff = document.getElementById("difficulty").value;
-  let pairs = diff === "easy" ? 4 : diff === "medium" ? 6 : 8;
-  let gameSymbols = symbols.slice(0, pairs);
-  let cards = [...gameSymbols, ...gameSymbols].sort(() => Math.random() - 0.5);
-
-  board.style.gridTemplateColumns = `repeat(${pairs}, 80px)`;
-  
-  cards.forEach(symbol => {
-    let card = document.createElement("div");
-    card.classList.add("card");
-    card.dataset.symbol = symbol;
-    card.innerText = "?";
-    card.addEventListener("click", () => flipCard(card));
-    board.appendChild(card);
+  board.style.gridTemplateColumns = `repeat(${Math.min(6,pairs)}, 1fr)`;
+  cards.forEach((sym, i) => {
+    const el = document.createElement("div");
+    el.className = "card";
+    el.dataset.sym = sym;
+    el.textContent = "❔";
+    el.addEventListener("click", ()=> flipCard(el));
+    board.appendChild(el);
   });
+  status.textContent = "Find all pairs!";
 }
 
-function flipCard(card) {
-  if (card.classList.contains("flipped") || flippedCards.length === 2) return;
-  card.innerText = card.dataset.symbol;
-  card.classList.add("flipped");
-  flippedCards.push(card);
-
-  if (flippedCards.length === 2) {
-    setTimeout(checkMatch, 800);
-  }
+function flipCard(el){
+  if (el.classList.contains("revealed") || openCards.includes(el) || openCards.length===2) return;
+  el.textContent = el.dataset.sym;
+  el.classList.add("revealed");
+  openCards.push(el);
+  if (openCards.length===2) setTimeout(checkMatch, 650);
 }
 
-function checkMatch() {
-  let [c1, c2] = flippedCards;
-  if (c1.dataset.symbol !== c2.dataset.symbol) {
-    c1.innerText = "?";
-    c2.innerText = "?";
-    c1.classList.remove("flipped");
-    c2.classList.remove("flipped");
-  } else {
+function checkMatch(){
+  const [a,b] = openCards;
+  if (a.dataset.sym === b.dataset.sym){
     matched++;
-    if (matched === symbols.length) {
-      setTimeout(() => alert("🎉 You win!"), 200);
+    a.removeEventListener("click", ()=>flipCard(a));
+    b.removeEventListener("click", ()=>flipCard(b));
+    if (matched === cards.length/2){
+      status.textContent = "🎉 You Win!";
+      saveHighScore("memoryHighScore", matched*100); // arbitrary scoring
     }
+  } else {
+    a.textContent = "❔"; b.textContent = "❔";
+    a.classList.remove("revealed"); b.classList.remove("revealed");
   }
-  flippedCards = [];
+  openCards = [];
 }
 
+function shuffle(arr){ return arr.sort(()=>Math.random()-0.5); }
+
+function saveHighScore(key, score){
+  const prev = Number(localStorage.getItem(key) || 0);
+  if (score > prev) {
+    localStorage.setItem(key, score);
+    window.refreshLeaderboard && window.refreshLeaderboard();
+  }
+}
