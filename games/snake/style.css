@@ -1,12 +1,2 @@
-#gameCanvas {
-  background: #1e1f29;
-  border: 2px solid #f8f8f2;
-  margin-top: 20px;
-  box-shadow: 0 0 10px #6272a4;
-}
-
-#status {
-  margin-top: 10px;
-  font-size: 18px;
-}
-
+@import "../common.css";
+#game { image-rendering: pixelated; }
