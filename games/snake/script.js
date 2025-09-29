@@ -7,6 +7,19 @@ const startScreen = document.getElementById('startScreen');
 const gameScreen = document.getElementById('gameScreen');
 const difficultySelect = document.getElementById('difficulty');
 
+// Dracula theme colors
+const COLORS = {
+    background: '#282a36',
+    canvasBg: '#44475a',
+    snake: '#50fa7b',
+    mouth: '#ff5555',
+    food: '#f1fa8c',
+    border: '#bd93f9',
+    text: '#f8f8f2',
+    buttonHover: '#bd93f9',
+    buttonTextHover: '#282a36',
+};
+
 let gridSize = 30;
 let tileSize = canvas.width / gridSize;
 let snake = [];
@@ -56,20 +69,19 @@ function drawSnake() {
     snake.forEach((segment, index) => {
         if(index === 0) {
             // Head
-            ctx.fillStyle = '#0f0';
-            ctx.fillRect(segment.x * tileSize, segment.y * tileSize, tileSize, tileSize);
+            drawTile(segment.x, segment.y, COLORS.snake);
             // Mouth
-            ctx.fillStyle = '#f00';
+            drawTile(segment.x + 0.25, segment.y + 0.25, COLORS.mouth, tileSize*0.5);
+            ctx.fillStyle = COLORS.mouth;
             ctx.fillRect(segment.x * tileSize + tileSize/4, segment.y * tileSize + tileSize/4, tileSize/2, tileSize/2);
         } else {
-            ctx.fillStyle = '#0f0';
-            ctx.fillRect(segment.x * tileSize, segment.y * tileSize, tileSize, tileSize);
+            drawTile(segment.x, segment.y, COLORS.snake);
         }
     });
 }
 
 function drawFood() {
-    drawTile(food.x, food.y, '#ff0');
+    drawTile(food.x, food.y, COLORS.food);
 }
 
 function gameLoop() {
@@ -96,7 +108,9 @@ function gameLoop() {
         snake.pop();
     }
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // Draw everything
+    ctx.fillStyle = COLORS.canvasBg;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
     drawFood();
     drawSnake();
 }
