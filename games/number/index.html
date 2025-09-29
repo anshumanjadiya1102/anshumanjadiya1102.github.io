@@ -1,43 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dark Snake Game</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <title>Tic Tac Toe</title>
+  <link rel="stylesheet" href="../common.css">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
-<div class="game-container">
-
-    <!-- Start/Guidelines Screen -->
-    <div id="startScreen">
-        <h1>Dark Snake Game</h1>
-        <p>Welcome to the Dark Snake Game!</p>
-        <p><strong>Guidelines:</strong></p>
-        <ul>
-            <li>Use Arrow keys to move the snake.</li>
-            <li>Eat the yellow food to grow and earn points.</li>
-            <li>Avoid hitting walls or yourself.</li>
-            <li>Select difficulty before starting.</li>
-        </ul>
-        <label for="difficulty">Difficulty:</label>
-        <select id="difficulty">
-            <option value="5">Easy</option>
-            <option value="10" selected>Medium</option>
-            <option value="15">Hard</option>
-        </select>
-        <br><br>
-        <button id="nextBtn">Next</button>
-    </div>
-
-    <!-- Game Screen -->
-    <div id="gameScreen" style="display:none;">
-        <canvas id="gameCanvas" width="600" height="600"></canvas>
-        <p>Score: <span id="score">0</span></p>
-        <button id="restartBtn">Restart</button>
-    </div>
-
-</div>
-<script src="script.js"></script>
+<body class="center">
+  <h1>❌⭕ Tic Tac Toe</h1>
+  <div id="menu">
+    <label class="label">Difficulty</label>
+    <select id="difficulty"><option>easy</option><option selected>hard</option></select>
+    <button id="startBtn">Start</button>
+  </div>
+  <div id="board" class="center"></div>
+  <p id="status" class="info"></p>
+  <script src="script.js"></script>
 </body>
 </html>
+
