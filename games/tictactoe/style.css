@@ -1,25 +1,4 @@
-#board {
-  display: grid;
-  grid-template-columns: repeat(3, 100px);
-  grid-gap: 5px;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.cell {
-  width: 100px;
-  height: 100px;
-  background: #44475a;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 36px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.cell:hover {
-  background: #6272a4;
-  box-shadow: 0 0 10px #ff79c6;
-}
+@import "../common.css";
+#board{ display:grid; grid-template-columns:repeat(3,110px); gap:8px; margin-top:18px; }
+.cell{ width:110px; height:110px; background:var(--card); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:40px; cursor:pointer; transition:transform .12s; }
+.cell:hover{ transform: translateY(-4px); box-shadow:0 10px 24px rgba(0,0,0,0.45); }
