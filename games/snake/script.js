@@ -1,124 +1,98 @@
-// Elements
-const canvas = document.getElementById('snakeCanvas');
-const ctx = canvas.getContext('2d');
-const scoreEl = document.getElementById('snakeScore');
-const nextBtn = document.getElementById('snakeNextBtn');
-const restartBtn = document.getElementById('snakeRestartBtn');
-const startScreen = document.getElementById('snakeStartScreen');
-const gameScreen = document.getElementById('snakeGameScreen');
-const difficultySelect = document.getElementById('snakeDifficulty');
+(() => {
+    // Elements
+    const canvas = document.getElementById('snake-canvas');
+    const ctx = canvas.getContext('2d');
+    const scoreEl = document.getElementById('snake-score');
+    const nextBtn = document.getElementById('snake-next');
+    const restartBtn = document.getElementById('snake-restart');
+    const startDiv = document.getElementById('snake-start');
+    const gameDiv = document.getElementById('snake-game');
+    const difficultySelect = document.getElementById('snake-difficulty');
 
-// Dracula colors
-const COLORS = {
-    canvasBg: '#44475a',
-    snake: '#50fa7b',
-    mouth: '#ff5555',
-    food: '#f1fa8c'
-};
+    // Colors
+    const COLORS = {bg:'#44475a', snake:'#50fa7b', mouth:'#ff5555', food:'#f1fa8c'};
 
-// Game variables
-let snake_snake = [];
-let snake_food = {};
-let snake_direction = {x:0,y:0};
-let snake_newDirection = {x:0,y:0};
-let snake_score = 0;
-let snake_speed = 100;
-let snake_gameInterval;
-let snake_gridSize = 30;
-let snake_tileSize = canvas.width / snake_gridSize;
+    // Game state
+    let snakeArr=[], snakeDir={x:0,y:0}, newDir={x:0,y:0}, food={x:0,y:0};
+    let score=0, grid=30, tile=canvas.width/grid, speed=100, gameInterval;
 
-// Start game
-nextBtn.addEventListener('click', ()=>{
-    startScreen.style.display = 'none';
-    gameScreen.style.display = 'block';
-    initSnakeGame();
-});
+    // Start button
+    nextBtn.addEventListener('click', () => {
+        startDiv.style.display='none';
+        gameDiv.style.display='block';
+        startGame();
+    });
 
-// Restart game
-restartBtn.addEventListener('click', initSnakeGame);
+    // Restart button
+    restartBtn.addEventListener('click', startGame);
 
-// Initialize Snake game
-function initSnakeGame(){
-    snake_snake = [{x: Math.floor(snake_gridSize/2), y: Math.floor(snake_gridSize/2)}];
-    snake_direction = {x:0,y:0};
-    snake_newDirection = {x:0,y:0};
-    snake_score = 0;
-    scoreEl.textContent = snake_score;
-    snake_speed = 200 - parseInt(difficultySelect.value)*10;
-    placeFood();
-    clearInterval(snake_gameInterval);
-    snake_gameInterval = setInterval(snakeGameLoop, snake_speed);
-}
+    // Initialize game
+    function startGame(){
+        snakeArr=[{x:Math.floor(grid/2),y:Math.floor(grid/2)}];
+        snakeDir={x:0,y:0};
+        newDir={x:0,y:0};
+        score=0;
+        scoreEl.textContent=score;
+        speed=200 - parseInt(difficultySelect.value)*10;
+        placeFood();
+        clearInterval(gameInterval);
+        gameInterval=setInterval(gameLoop,speed);
+    }
 
-// Place food
-function placeFood(){
-    snake_food = {
-        x: Math.floor(Math.random()*snake_gridSize),
-        y: Math.floor(Math.random()*snake_gridSize)
-    };
-}
+    // Place food
+    function placeFood(){
+        food={x:Math.floor(Math.random()*grid), y:Math.floor(Math.random()*grid)};
+    }
 
-// Draw everything
-function drawSnakeGame(){
-    // Canvas background
-    ctx.fillStyle = COLORS.canvasBg;
-    ctx.fillRect(0,0,canvas.width,canvas.height);
+    // Draw everything
+    function draw(){
+        ctx.fillStyle = COLORS.bg;
+        ctx.fillRect(0,0,canvas.width,canvas.height);
 
-    // Draw food
-    ctx.fillStyle = COLORS.food;
-    ctx.fillRect(snake_food.x*snake_tileSize, snake_food.y*snake_tileSize, snake_tileSize, snake_tileSize);
+        ctx.fillStyle=COLORS.food;
+        ctx.fillRect(food.x*tile,food.y*tile,tile,tile);
 
-    // Draw snake
-    snake_snake.forEach((segment,index)=>{
-        ctx.fillStyle = COLORS.snake;
-        ctx.fillRect(segment.x*snake_tileSize, segment.y*snake_tileSize, snake_tileSize, snake_tileSize);
-        if(index===0){
-            // Mouth
-            const mouthSize = snake_tileSize*0.4;
-            const mouthX = segment.x*snake_tileSize + (snake_tileSize-mouthSize)/2;
-            const mouthY = segment.y*snake_tileSize + (snake_tileSize-mouthSize)/2;
-            ctx.fillStyle = COLORS.mouth;
-            ctx.fillRect(mouthX, mouthY, mouthSize, mouthSize);
+        snakeArr.forEach((seg,idx)=>{
+            ctx.fillStyle=COLORS.snake;
+            ctx.fillRect(seg.x*tile,seg.y*tile,tile,tile);
+            if(idx===0){
+                const mouthSize=tile*0.4;
+                ctx.fillStyle=COLORS.mouth;
+                ctx.fillRect(seg.x*tile+(tile-mouthSize)/2,seg.y*tile+(tile-mouthSize)/2,mouthSize,mouthSize);
+            }
+        });
+    }
+
+    // Game loop
+    function gameLoop(){
+        if(Math.abs(newDir.x)!==Math.abs(snakeDir.x)||Math.abs(newDir.y)!==Math.abs(snakeDir.y)) snakeDir=newDir;
+        const head={x:snakeArr[0].x+snakeDir.x,y:snakeArr[0].y+snakeDir.y};
+
+        if(head.x<0||head.x>=grid||head.y<0||head.y>=grid||snakeArr.some(s=>s.x===head.x&&s.y===head.y)){
+            clearInterval(gameInterval);
+            alert('Game Over! Score: '+score);
+            return;
+        }
+
+        snakeArr.unshift(head);
+
+        if(head.x===food.x&&head.y===food.y){
+            score++;
+            scoreEl.textContent=score;
+            placeFood();
+        } else snakeArr.pop();
+
+        draw();
+    }
+
+    // Keyboard
+    document.addEventListener('keydown', e=>{
+        switch(e.key){
+            case 'ArrowUp': if(snakeDir.y!==1) newDir={x:0,y:-1}; break;
+            case 'ArrowDown': if(snakeDir.y!==-1) newDir={x:0,y:1}; break;
+            case 'ArrowLeft': if(snakeDir.x!==1) newDir={x:-1,y:0}; break;
+            case 'ArrowRight': if(snakeDir.x!==-1) newDir={x:1,y:0}; break;
         }
     });
-}
 
-// Game loop
-function snakeGameLoop(){
-    if(Math.abs(snake_newDirection.x)!==Math.abs(snake_direction.x) || Math.abs(snake_newDirection.y)!==Math.abs(snake_direction.y)){
-        snake_direction = snake_newDirection;
-    }
-
-    const head = {x: snake_snake[0].x + snake_direction.x, y: snake_snake[0].y + snake_direction.y};
-
-    // Collision check
-    if(head.x<0 || head.x>=snake_gridSize || head.y<0 || head.y>=snake_gridSize || snake_snake.some(s=>s.x===head.x && s.y===head.y)){
-        clearInterval(snake_gameInterval);
-        alert("Game Over! Score: "+snake_score);
-        return;
-    }
-
-    snake_snake.unshift(head);
-
-    // Food collision
-    if(head.x===snake_food.x && head.y===snake_food.y){
-        snake_score++;
-        scoreEl.textContent = snake_score;
-        placeFood();
-    } else {
-        snake_snake.pop();
-    }
-
-    drawSnakeGame();
-}
-
-// Keyboard input
-document.addEventListener('keydown', e=>{
-    switch(e.key){
-        case 'ArrowUp': if(snake_direction.y!==1) snake_newDirection={x:0,y:-1}; break;
-        case 'ArrowDown': if(snake_direction.y!==-1) snake_newDirection={x:0,y:1}; break;
-        case 'ArrowLeft': if(snake_direction.x!==1) snake_newDirection={x:-1,y:0}; break;
-        case 'ArrowRight': if(snake_direction.x!==-1) snake_newDirection={x:1,y:0}; break;
-    }
-});
-
+})();
