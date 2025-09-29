@@ -2,37 +2,84 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Game Hub</title>
+  <title>Game Hub | Anshuman Jadiya</title>
   <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
 </head>
 <body>
+  <!-- Header -->
   <header>
-    <h1>🎮 Welcome to Anshuman Jadiya's Game Hub</h1>
-    <p>Select a game to play:</p>
+    <h1>🎮 Welcome to Anshuman’s Game Hub</h1>
+    <p>Choose a game below and start playing!</p>
   </header>
 
-  <main class="games-grid">
-    <a href="memory/index.html" class="game-card">🧠 Memory</a>
-    <a href="tictactoe/index.html" class="game-card">❌ Tic Tac Toe</a>
-    <a href="snake/index.html" class="game-card">🐍 Snake</a>
-    <a href="number/index.html" class="game-card">🔢 Number Guessing</a>
-    <a href="flappy/index.html" class="game-card">🏐 Flappy Ball</a>
-    <a href="pong/index.html" class="game-card">🏓 Pong</a>
-    <a href="breakout/index.html" class="game-card">🧱 Breakout</a>
-    <a href="asteroids/index.html" class="game-card">🚀 Asteroids</a>
-    <a href="platformer/index.html" class="game-card">🏃 Platformer</a>
+  <!-- Unicorns & Rainbows -->
+  <div class="floating-decor">
+    <img src="assets/unicorn1.png" class="decor unicorn" alt="unicorn">
+    <img src="assets/unicorn2.png" class="decor unicorn" alt="unicorn">
+    <img src="assets/rainbow1.png" class="decor rainbow" alt="rainbow">
+    <img src="assets/rainbow2.png" class="decor rainbow" alt="rainbow">
+  </div>
+
+  <!-- Game Cards -->
+  <main class="game-grid">
+    <a href="memory/index.html" class="game-card">
+      <img src="assets/icons/memory.png" alt="Memory Game">
+      <h3>Memory</h3>
+    </a>
+    <a href="tictactoe/index.html" class="game-card">
+      <img src="assets/icons/tictactoe.png" alt="Tic Tac Toe">
+      <h3>Tic Tac Toe</h3>
+    </a>
+    <a href="snake/index.html" class="game-card">
+      <img src="assets/icons/snake.png" alt="Snake Game">
+      <h3>Snake</h3>
+    </a>
+    <a href="guess/index.html" class="game-card">
+      <img src="assets/icons/guess.png" alt="Number Guessing">
+      <h3>Number Guess</h3>
+    </a>
+    <a href="flappy/index.html" class="game-card">
+      <img src="assets/icons/flappy.png" alt="Flappy Ball">
+      <h3>Flappy Ball</h3>
+    </a>
+    <a href="mario/index.html" class="game-card">
+      <img src="assets/icons/mario.png" alt="Mario Game">
+      <h3>Mario</h3>
+    </a>
   </main>
 
+  <!-- Leaderboard -->
+  <section class="leaderboard">
+    <h2>🏆 Leaderboard</h2>
+    <table id="leaderboard-table">
+      <thead>
+        <tr><th>Player</th><th>Game</th><th>Score</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Anshuman</td><td>Snake</td><td>150</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Links -->
   <footer>
-    <p>© 2025 Anshuman Jadiya | All games are made on <a href="https://github.com/anshumanjadiya1102/anshumanjadiya1102.github.io">GitHub</a><br>
-    <a href="https://github.com/anshumanjadiya1102/anshumanjadiya1102.github.io/stargazers" target="_blank">
-  <img src="https://img.shields.io/github/stars/anshumanjadiya1102/anshumanjadiya1102.github.io?style=social" alt="Stars">
-</a>
-  <a href="https://github.com/anshumanjadiya1102">
-          <img src="https://img.shields.io/github/followers/anshumanjadiya1102?label=Followers&style=social" alt="GitHub Followers"/>
-        </a>
+    <p>
+      ⭐ <a href="https://github.com/anshumanjadiya1102/anshumanjadiya1102.github.io" target="_blank">Star this repo</a> · 
+      👤 <a href="https://github.com/anshumanjadiya1102" target="_blank">Follow me on GitHub</a> · 
+      🌍 <a href="https://anshumanjadiya1102.github.io" target="_blank">Website</a> · 
+      🗺️ <a href="https://anshumanjadiya1102.github.io/world-map" target="_blank">World Map</a> · 
+      ✍️ <a href="https://anshumanjadiya1102.github.io/blog.html" target="_blank">Blog</a>
     </p>
+
+    <!-- Mail -->
+    <form action="mailto:anshuman.jadiya03@gmail.com" method="post" enctype="text/plain">
+      <label for="message">📧 Send me a message:</label><br>
+      <textarea id="message" name="message" required></textarea><br>
+      <button type="submit">Send</button>
+    </form>
   </footer>
 </body>
 </html>
+
 
