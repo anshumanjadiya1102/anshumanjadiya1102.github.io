@@ -1,103 +1,37 @@
-let canvas = document.getElementById("gameCanvas");
-let ctx = canvas.getContext("2d");
+const cvs = document.getElementById("canvas"), ctx = cvs.getContext("2d");
+const startBtnF = document.getElementById("startBtn"), scoreElF = document.getElementById("score");
+let ball, pipes=[], frame=0, score=0, running=false, gravity=0.5, lift=-8, pipeGap=120, pipeSpeed=2;
 
-let ball, gravity, lift, velocity;
-let pipes = [];
-let frame = 0;
-let score = 0;
-let gameRunning = false;
-let pipeGap = 120;
-let pipeSpeed = 2;
+startBtnF.addEventListener("click", start);
+cvs.addEventListener("mousedown", ()=> { if(running) ball.v = lift; });
 
-function startGame() {
-  let diff = document.getElementById("difficulty").value;
-  if (diff === "easy") {
-    pipeGap = 150; pipeSpeed = 2;
-  } else if (diff === "medium") {
-    pipeGap = 120; pipeSpeed = 3;
-  } else {
-    pipeGap = 100; pipeSpeed = 4;
-  }
-
-  ball = { x: 50, y: canvas.height / 2, radius: 12 };
-  gravity = 0.5;
-  lift = -8;
-  velocity = 0;
-  pipes = [];
-  frame = 0;
-  score = 0;
-  gameRunning = true;
-
-  document.getElementById("score").innerText = "Score: 0";
-
-  loop();
+function start(){
+  const diff = document.getElementById("difficulty").value;
+  pipeGap = diff==="easy"?150:diff==="medium"?120:100; pipeSpeed = diff==="easy"?2:diff==="medium"?3:4;
+  ball = {x:60, y:cvs.height/2, r:12, v:0}; pipes=[]; frame=0; score=0; running=true; scoreElF.textContent="Score:0"; loop();
 }
 
-function loop() {
-  if (!gameRunning) return;
-
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  // Ball
-  velocity += gravity;
-  ball.y += velocity;
-
-  ctx.beginPath();
-  ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
-  ctx.fillStyle = "#ffb86c";
-  ctx.fill();
-  ctx.closePath();
-
-  // Pipes
-  if (frame % 90 === 0) {
-    let pipeHeight = Math.random() * (canvas.height - pipeGap - 50) + 20;
-    pipes.push({ x: canvas.width, y: pipeHeight });
+function loop(){
+  if(!running) return;
+  ctx.fillStyle="#1e1f29"; ctx.fillRect(0,0,cvs.width,cvs.height);
+  // spawn pipes
+  if(frame % 90 === 0){ const top = 20 + Math.random()*(cvs.height-pipeGap-60); pipes.push({x:cvs.width, top}); }
+  // update pipes
+  for(let i=pipes.length-1;i>=0;i--){
+    const p=pipes[i]; p.x -= pipeSpeed;
+    ctx.fillStyle="#50fa7b"; ctx.fillRect(p.x,0,40,p.top); ctx.fillRect(p.x,p.top+pipeGap,40,cvs.height-p.top-pipeGap);
+    if(p.x + 40 < 0){ pipes.splice(i,1); score++; scoreElF.textContent="Score:"+score; }
+    // collision
+    if(ball.x+ball.r > p.x && ball.x-ball.r < p.x+40 && (ball.y-ball.r < p.top || ball.y+ball.r > p.top+pipeGap)){ end(); return; }
   }
-
-  for (let i = pipes.length - 1; i >= 0; i--) {
-    let pipe = pipes[i];
-    pipe.x -= pipeSpeed;
-
-    ctx.fillStyle = "#50fa7b";
-    ctx.fillRect(pipe.x, 0, 40, pipe.y);
-    ctx.fillRect(pipe.x, pipe.y + pipeGap, 40, canvas.height - pipe.y - pipeGap);
-
-    if (pipe.x + 40 < 0) {
-      pipes.splice(i, 1);
-      score++;
-      document.getElementById("score").innerText = "Score: " + score;
-    }
-
-    // Collision
-    if (
-      ball.x + ball.radius > pipe.x &&
-      ball.x - ball.radius < pipe.x + 40 &&
-      (ball.y - ball.radius < pipe.y || ball.y + ball.radius > pipe.y + pipeGap)
-    ) {
-      endGame();
-    }
-  }
-
-  // Floor / Ceiling collision
-  if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) {
-    endGame();
-  }
-
-  frame++;
-  requestAnimationFrame(loop);
+  // ball physics
+  ball.v += gravity; ball.y += ball.v;
+  if(ball.y+ball.r>cvs.height || ball.y-ball.r<0){ end(); return; }
+  // draw ball
+  ctx.beginPath(); ctx.arc(ball.x, ball.y, ball.r,0,Math.PI*2); ctx.fillStyle="#ffb86c"; ctx.fill(); ctx.closePath();
+  frame++; requestAnimationFrame(loop);
 }
 
-function endGame() {
-  gameRunning = false;
-  ctx.fillStyle = "#ff5555";
-  ctx.font = "24px Arial";
-  ctx.fillText("💀 Game Over! Final Score: " + score, 40, canvas.height / 2);
-}
+function end(){ running=false; saveHighScore("flappyHighScore", score); ctx.fillStyle="#ff5555"; ctx.font="20px Arial"; ctx.fillText("Game Over - Score:"+score, 20, cvs.height/2); }
 
-document.addEventListener("keydown", function (e) {
-  if (e.code === "Space") velocity = lift;
-});
-
-canvas.addEventListener("mousedown", function () {
-  velocity = lift;
-});
+function saveHighScore(key, s){ const prev=Number(localStorage.getItem(key)||0); if (s>prev){ localStorage.setItem(key,s); window.refreshLeaderboard && window.refreshLeaderboard(); } }
