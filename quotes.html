@@ -1,736 +1,255 @@
-<!doctype html>
-<html lang="en" data-theme="dark">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Developer Quotes — Awesome GitHub Profiles</title>
-  <meta name="description" content="A rotating collection of programming and developer quotes. Add your own, search, filter, copy or tweet quotes." />
-  <style>
-    :root{
-      --bg1: #0f1724;
-      --bg2: #162332;
-      --card: rgba(255,255,255,0.06);
-      --accent: #06b6d4;
-      --muted: #9aa6b2;
-      --glass: rgba(255,255,255,0.03);
-      --radius: 12px;
-    }
-    html[data-theme="light"] {
-      --bg1: #f0f4f8;
-      --bg2: #e6eef6;
-      --card: rgba(2,6,23,0.04);
-      --accent: #7c3aed;
-      --muted: #475569;
-      --glass: rgba(0,0,0,0.05);
-      color: #031028;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: linear-gradient(180deg,var(--bg1),var(--bg2));
-      color: #e6eef6;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:2rem;
-    }
-    html[data-theme="light"] body { color: #031028; }
-
-    .app {
-      width:100%;
-      max-width:980px;
-      border-radius:16px;
-      padding:1.25rem;
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      box-shadow: 0 12px 40px rgba(3,7,18,0.7);
-      backdrop-filter: blur(6px);
-      border:1px solid rgba(255,255,255,0.03);
-    }
-
-    header.app-header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:1rem;
-      margin-bottom:1rem;
-    }
-
-    .title {
-      display:flex;
-      gap:.75rem;
-      align-items:center;
-    }
-    .logo {
-      width:48px;height:48px;border-radius:10px;
-      background:linear-gradient(135deg,var(--accent),#4f46e5);
-      display:flex;align-items:center;justify-content:center;font-weight:700;color:#031028;
-      box-shadow:0 6px 18px rgba(4,10,20,0.5);
-    }
-    h1{font-size:1.25rem;margin:0}
-    p.lead{margin:0;color:var(--muted);font-size:0.95rem}
-
-    .controls {
-      display:flex;
-      gap:.5rem;
-      align-items:center;
-      flex-wrap:wrap;
-    }
-
-    button.btn {
-      border:1px solid rgba(255,255,255,0.06);
-      background:var(--glass);
-      color:inherit;
-      padding:.5rem .75rem;
-      border-radius:10px;
-      cursor:pointer;
-      font-weight:600;
-      transition:transform .12s ease, background .12s ease;
-    }
-    button.btn:hover{transform:translateY(-3px)}
-    button.ghost { background: transparent; border: 1px solid rgba(255,255,255,0.04) }
-    button.primary { background: linear-gradient(90deg,var(--accent),#7c3aed); color:#031028; border: none }
-
-    .top-actions { display:flex; gap:.5rem; align-items:center }
-
-    .layout {
-      display:grid;
-      grid-template-columns: 1fr 320px;
-      gap:1rem;
-      align-items:start;
-    }
-    @media (max-width:880px){
-      .layout{grid-template-columns:1fr}
-    }
-
-    /* Quote card */
-    .card {
-      background:var(--card);
-      border-radius:var(--radius);
-      padding:1.25rem;
-      min-height:220px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      transition: transform .2s ease, box-shadow .2s ease;
-      border:1px solid rgba(255,255,255,0.02);
-    }
-    .card.fly { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(2,6,23,0.6) }
-
-    .quote-text {
-      font-size:1.05rem;
-      line-height:1.5;
-      color:#e8f1fb;
-      margin-bottom:1rem;
-      white-space:pre-wrap;
-    }
-    html[data-theme="light"] .quote-text { color: #031028; }
-    .quote-meta { color:var(--muted); font-size:.9rem; display:flex; justify-content:space-between; gap:1rem; align-items:center }
-
-    .tag {
-      padding:.25rem .5rem;
-      background:rgba(255,255,255,0.03);
-      border-radius:999px;
-      font-size:.8rem;
-      color:var(--muted);
-      border:1px solid rgba(255,255,255,0.015);
-    }
-
-    .card-actions { display:flex; gap:.5rem; margin-top:.75rem }
-
-    /* Sidebar */
-    aside.side {
-      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
-      padding:1rem;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,0.02);
-      min-height:220px;
-    }
-
-    .filter-row { display:flex; gap:.5rem; margin-bottom:.75rem; flex-wrap:wrap; }
-    .search { display:flex; gap:.5rem; margin-bottom:.75rem }
-    .search input {
-      flex:1; padding:.5rem .6rem; border-radius:10px; border:1px solid rgba(255,255,255,0.04); background:transparent; color:inherit;
-    }
-
-    ul.quick-list { list-style:none; padding:0; margin:0; display:grid; gap:.5rem; }
-    li.quick-list-item { font-size:.95rem; color:var(--muted); padding:.45rem .55rem; border-radius:8px; display:flex; justify-content:space-between; align-items:center; background: rgba(255,255,255,0.01) }
-
-    footer.small { margin-top:.9rem; font-size:.82rem; color:var(--muted); text-align:center }
-
-    /* small helpers */
-    .muted { color:var(--muted) }
-    .center { text-align:center }
-
-    /* form modal */
-    .modal {
-      position:fixed; inset:0; display:none; align-items:center; justify-content:center;
-      background: linear-gradient(180deg, rgba(2,6,23,0.6), rgba(2,6,23,0.85));
-      z-index:60;
-    }
-    .modal.show { display:flex }
-    .modal-card { width:100%; max-width:600px; background: #071028; border-radius:12px; padding:1rem; border:1px solid rgba(255,255,255,0.03) }
-    html[data-theme="light"] .modal-card { background: #ffffff; border:1px solid rgba(2,6,23,0.06) }
-    .field { display:flex; flex-direction:column; gap:.35rem; margin-bottom:.6rem }
-    .field input, .field textarea, .field select {
-      padding:.6rem .7rem; border-radius:8px; border:1px solid rgba(255,255,255,0.04); background:transparent; color:inherit;
-    }
-
-    .small { font-size:.85rem }
-    .pill { padding:.25rem .5rem; border-radius:999px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.01) }
-
-    /* subtle transition for quote text */
-    .fade-in { animation: fadeIn .28s ease both }
-    @keyframes fadeIn { from { opacity:0; transform: translateY(6px) } to { opacity:1; transform:none } }
-
-    .status { font-size:0.85rem; color:var(--muted); margin-bottom:.5rem }
-    .small-note { font-size:0.82rem; color:var(--muted) }
-    kbd { background:rgba(255,255,255,0.04); padding:.12rem .35rem; border-radius:6px; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Developer Quotes — RecodeHive</title>
+<style>
+:root {
+  --bg-dark1:#0a0f1c; --bg-dark2:#131a2b;
+  --bg-light1:#f0f4f8; --bg-light2:#e0e7ff;
+  --card-dark: rgba(255,255,255,0.06); --card-light: rgba(0,0,0,0.06);
+  --accent1:#06b6d4; --accent2:#7c3aed;
+  --muted-dark:#9aa6b2; --muted-light:#475569;
+  --radius:12px; --font:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+}
+body {margin:0;font-family:var(--font);background:linear-gradient(180deg,var(--bg-dark1),var(--bg-dark2));color:#e6eef6;display:flex;flex-direction:column;min-height:100vh;transition:background 0.4s,color 0.4s;}
+body.light {background:linear-gradient(180deg,var(--bg-light1),var(--bg-light2));color:#1e293b;}
+header{display:flex;flex-direction:column;align-items:center;text-align:center;padding:2rem 1rem 1rem;}
+header .logo{width:60px;height:60px;background:linear-gradient(135deg,var(--accent1),var(--accent2));border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#031028;font-size:1.5rem;box-shadow:0 4px 12px rgba(0,0,0,0.4);}
+header h1{margin:0.5rem 0;font-size:2rem;}
+header p{margin:0;font-size:1rem;opacity:0.85;max-width:600px;}
+header a.devfolio-link{margin-top:0.5rem;color:var(--accent1);text-decoration:none;font-weight:600;}
+header .theme-toggle{margin-top:1rem;padding:.5rem 1rem;border-radius:8px;border:none;cursor:pointer;background:var(--accent1);color:#031028;font-weight:600;transition:transform .2s;}
+header .theme-toggle:hover{transform:translateY(-2px);}
+.app{flex:1;display:flex;justify-content:center;padding:1rem;}
+.layout{display:grid;grid-template-columns:1fr 320px;gap:1rem;width:100%;max-width:980px;}
+@media(max-width:880px){.layout{grid-template-columns:1fr;}}
+.card{background:var(--card-dark);border-radius:var(--radius);padding:1.25rem;min-height:220px;display:flex;flex-direction:column;justify-content:space-between;transition: transform .2s ease, box-shadow .2s ease;border:1px solid rgba(255,255,255,0.03);}
+body.light .card{background:var(--card-light);border:1px solid rgba(0,0,0,0.05);}
+.card.fly{transform:translateY(-6px);box-shadow:0 18px 40px rgba(2,6,23,0.6);}
+.quote-text{font-size:1.05rem;line-height:1.5;margin-bottom:1rem;white-space:pre-wrap;}
+.quote-meta{font-size:.9rem;display:flex;justify-content:space-between;color:var(--muted-dark);}
+body.light .quote-meta{color:var(--muted-light);}
+.tag{padding:.25rem .5rem;border-radius:999px;font-size:.8rem;border:1px solid rgba(255,255,255,0.015);background:rgba(255,255,255,0.03);}
+body.light .tag{background:rgba(0,0,0,0.02);border:1px solid rgba(0,0,0,0.01);}
+aside.side{background:rgba(255,255,255,0.02);border-radius:12px;padding:1rem;border:1px solid rgba(255,255,255,0.03);min-height:220px;display:flex;flex-direction:column;gap:.5rem;}
+body.light aside.side{background:rgba(0,0,0,0.02);border:1px solid rgba(0,0,0,0.03);}
+.btn{padding:.5rem .75rem;border-radius:8px;border:none;cursor:pointer;font-weight:600;background:var(--accent1);color:#031028;transition:transform .2s;}
+.btn:hover{transform:translateY(-2px);}
+.btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.2);color:inherit;}
+body.light .btn.secondary{border:1px solid rgba(0,0,0,0.2);}
+.modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.75);z-index:60;}
+.modal.show{display:flex;}
+.modal-card{width:100%;max-width:600px;background:#071028;border-radius:12px;padding:1rem;border:1px solid rgba(255,255,255,0.03);display:flex;flex-direction:column;gap:.5rem;}
+body.light .modal-card{background:#e0e7ff;color:#1e293b;border:1px solid rgba(0,0,0,0.05);}
+.field{display:flex;flex-direction:column;gap:.25rem;}
+.field input,.field textarea{padding:.5rem .6rem;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit;}
+body.light .field input,body.light .field textarea{border:1px solid rgba(0,0,0,0.2);background:#f0f4f8;color:#1e293b;}
+footer.pixel-footer{height:80px;background-image:url('https://i.imgur.com/pxq3s3K.png');background-size:cover;background-position:bottom;transition:filter 0.4s;}
+body.light footer.pixel-footer{filter:brightness(0.6);}
+</style>
 </head>
 <body>
-  <div class="app" role="application" aria-labelledby="app-title">
-    <header class="app-header">
-      <div class="title" id="app-title">
-        <div class="logo">Q</div>
-        <div>
-          <h1>Developer Quotes</h1>
-          <p class="lead">Short, wise, and funny quotes for developers — search, filter, copy, or add your own.</p>
+
+<header>
+  <div class="logo">Q</div>
+  <h1>Developer Quotes</h1>
+  <p>Short, wise, and funny quotes for developers — search, filter, copy, or add your own.</p>
+  <a href="https://dev.recodehive.com/devfolio" class="devfolio-link" target="_blank">Visit RecodeHive Devfolio →</a>
+  <button class="theme-toggle" id="themeToggle">Toggle Dark/Light</button>
+</header>
+
+<div class="app">
+  <div class="layout">
+    <main>
+      <article class="card" id="quoteCard">
+        <div class="quote-text" id="quoteText">Loading quotes…</div>
+        <div class="quote-meta">
+          <span id="quoteAuthor">— Author</span>
+          <span class="tag" id="quoteTag">general</span>
         </div>
-      </div>
-
-      <div class="controls">
-        <div class="top-actions">
-          <button class="btn" id="prevBtn" title="Previous quote">◀ Prev</button>
-          <button class="btn" id="nextBtn" title="Next quote">Next ▶</button>
-          <button class="btn" id="randomBtn" title="Random quote">🎲 Random</button>
-          <button class="btn primary" id="addBtn" title="Add a new quote">＋ Add Quote</button>
+        <div class="card-actions" style="margin-top:.75rem">
+          <button class="btn" id="favoriteBtn">★ Favorite</button>
+          <button class="btn secondary" id="moreBtn">🔍 More</button>
         </div>
+      </article>
+    </main>
+    <aside class="side">
+      <input id="filterInput" placeholder="Search text, author, or tag">
+      <button class="btn secondary" id="filterBtn">Filter</button>
+      <button class="btn" id="addBtn">＋ Add Quote</button>
+      <div id="quickList" style="margin-top:1rem;"></div>
+      <button id="showAllBtn" class="btn secondary">Show All</button>
+      <button id="clearStorageBtn" class="btn secondary">Clear Local Quotes</button>
+    </aside>
+  </div>
+</div>
 
-        <div style="display:flex; align-items:center; gap:.5rem;">
-          <button class="btn ghost" id="autoToggle" title="Auto rotate">⏯ Auto</button>
-          <button class="btn ghost" id="copyBtn" title="Copy quote">📋 Copy</button>
-          <button class="btn ghost" id="tweetBtn" title="Share on Twitter">🐦 Tweet</button>
-          <button class="btn ghost" id="themeToggle" title="Toggle dark/light mode">🌙 Theme</button>
-          <a class="btn ghost" id="recodeBtn" href="https://dev.recodehive.com/devfolio" target="_blank" rel="noopener">🔗 RecodeHive</a>
-        </div>
-      </div>
-    </header>
+<footer class="pixel-footer"></footer>
 
-    <div class="layout">
-      <main>
-        <article class="card" id="quoteCard" aria-live="polite">
-          <div>
-            <div class="quote-text fade-in" id="quoteText">Loading quotes…</div>
-          </div>
-
-          <div>
-            <div class="quote-meta">
-              <span class="muted" id="quoteAuthor">— Author</span>
-              <span class="tag" id="quoteTag">general</span>
-            </div>
-
-            <div class="card-actions" style="margin-top:.75rem">
-              <button class="btn" id="favoriteBtn" title="Save to favorites">★ Favorite</button>
-              <button class="btn" id="moreBtn" title="More like this">🔍 More</button>
-            </div>
-          </div>
-        </article>
-
-        <footer class="small center">Tip: Press <kbd>Enter</kbd> in the search box to filter quotes quickly.</footer>
-      </main>
-
-      <aside class="side" aria-label="Quote controls and search">
-        <div class="search">
-          <input id="filterInput" placeholder="Search by text, author, or tag" aria-label="Search quotes">
-          <button class="btn" id="filterBtn">Filter</button>
-          <button class="btn" id="clearFilterBtn" title="Clear filter" style="display:none">✖ Clear</button>
-        </div>
-
-        <div class="status" id="filterStatus" aria-live="polite" style="display:none"></div>
-
-        <div class="filter-row" id="tagFilters" aria-hidden="false">
-          <!-- tag buttons injected here -->
-        </div>
-
-        <h3 class="small muted" style="margin-top:.6rem">Quick list</h3>
-        <ul class="quick-list" id="quickList">
-          <!-- recent or favorite items -->
-        </ul>
-
-        <div style="margin-top:1rem; display:flex; gap:.5rem">
-          <button class="btn" id="showAllBtn">Show All</button>
-          <button class="btn" id="clearStorageBtn">Clear Local Quotes</button>
-        </div>
-
-        <footer class="small" style="margin-top:1rem">Saved quotes are stored locally in your browser only.</footer>
-      </aside>
+<div class="modal" id="modal">
+  <div class="modal-card">
+    <h2>Add a New Quote</h2>
+    <div class="field"><label>Quote</label><textarea id="newQuote" rows="3"></textarea></div>
+    <div class="field"><label>Author</label><input id="newAuthor" placeholder="Author name"></div>
+    <div class="field"><label>Tag</label><input id="newTag" placeholder="Tag (e.g. inspiration)"></div>
+    <div style="display:flex;justify-content:flex-end;gap:.5rem;">
+      <button class="btn secondary" id="cancelAdd">Cancel</button>
+      <button class="btn" id="saveAdd">Save</button>
     </div>
   </div>
+</div>
 
-  <!-- Modal for adding quote -->
-  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-hidden="true">
-    <div class="modal-card" role="document">
-      <h2 style="margin-top:0">Add a new quote</h2>
-      <div class="field">
-        <label class="small">Quote</label>
-        <textarea id="newQuote" rows="3" placeholder="Write or paste the quote..." aria-label="Quote text"></textarea>
-      </div>
-      <div class="field">
-        <label class="small">Author (optional)</label>
-        <input id="newAuthor" placeholder="Author name (e.g. Grace Hopper)" />
-      </div>
-      <div class="field">
-        <label class="small">Tag (optional)</label>
-        <input id="newTag" placeholder="e.g. inspiration, humor, advice" />
-      </div>
-      <div style="display:flex; gap:.5rem; justify-content:flex-end; margin-top:.5rem">
-        <button class="btn" id="cancelAdd">Cancel</button>
-        <button class="btn primary" id="saveAdd">Save Quote</button>
-      </div>
-    </div>
-  </div>
+<script>
+const defaultQuotes = [
+  {text:"Code is like humor. When you have to explain it, it’s bad.",author:"Cory House",tag:"humor"},
+  {text:"First, solve the problem. Then, write the code.",author:"John Johnson",tag:"advice"},
+  {text:"Talk is cheap. Show me the code.",author:"Linus Torvalds",tag:"action"},
+  {text:"Programs must be written for people to read, and only incidentally for machines to execute.",author:"Harold Abelson",tag:"readability"},
+  {text:"Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",author:"Martin Fowler",tag:"best-practices"},
+  {text:"Experience is the name everyone gives to their mistakes.",author:"Oscar Wilde",tag:"wisdom"},
+  {text:"Simplicity is the soul of efficiency.",author:"Austin Freeman",tag:"simplicity"},
+  {text:"If debugging is the process of removing software bugs, then programming must be the process of putting them in.",author:"Edsger W. Dijkstra",tag:"humor"},
+  {text:"Make it work, make it right, make it fast.",author:"Kent Beck",tag:"process"},
+  {text:"Before software can be reusable it first has to be usable.",author:"Ralph Johnson",tag:"design"},
+  {text:"The best error message is the one that never shows up.",author:"Thomas Fuchs",tag:"ux"},
+  {text:"Code never lies, comments sometimes do.",author:"Ron Jeffries",tag:"advice"},
+  {text:"Deleted code is debugged code.",author:"Jeff Sickel",tag:"humor"},
+  {text:"Programming is thinking, not typing.",author:"Rich Hickey",tag:"wisdom"},
+  {text:"Good code is its own best documentation.",author:"Steve McConnell",tag:"best-practices"},
+  {text:"Premature optimization is the root of all evil.",author:"Donald Knuth",tag:"advice"},
+  {text:"Simplicity is prerequisite for reliability.",author:"Edsger W. Dijkstra",tag:"simplicity"},
+  {text:"Walking on water and developing software from a specification are easy if both are frozen.",author:"Edward V. Berard",tag:"humor"},
+  {text:"Deleted code is debugged code.",author:"Jeff Sickel",tag:"humor"},
+  {text:"Code is like poetry.",author:"Automattic",tag:"wisdom"},
+  {text:"First, solve the problem. Then, write the code.",author:"John Johnson",tag:"advice"},
+  {text:"Talk is cheap. Show me the code.",author:"Linus Torvalds",tag:"action"},
+  {text:"Debugging is twice as hard as writing the code in the first place.",author:"Brian Kernighan",tag:"humor"},
+  {text:"Optimism is an occupational hazard of programming.",author:"Kent Beck",tag:"humor"},
+  {text:"Testing leads to failure, and failure leads to understanding.",author:"Burt Rutan",tag:"wisdom"},
+  {text:"Programs must be written for people to read.",author:"Harold Abelson",tag:"readability"},
+  {text:"Good programmers write code that humans can understand.",author:"Martin Fowler",tag:"best-practices"},
+  {text:"Experience is the name everyone gives to their mistakes.",author:"Oscar Wilde",tag:"wisdom"},
+  {text:"Code is like humor.",author:"Cory House",tag:"humor"},
+  {text:"The most disastrous thing that you can ever learn is your first programming language.",author:"Alan Kay",tag:"humor"},
+  {text:"Make it work, make it right, make it fast.",author:"Kent Beck",tag:"process"},
+  {text:"Before software can be reusable it first has to be usable.",author:"Ralph Johnson",tag:"design"},
+  {text:"Talk is cheap. Show me the code.",author:"Linus Torvalds",tag:"action"},
+  {text:"Programs must be written for people to read.",author:"Harold Abelson",tag:"readability"},
+  {text:"Good code is its own best documentation.",author:"Steve McConnell",tag:"best-practices"},
+  {text:"Premature optimization is the root of all evil.",author:"Donald Knuth",tag:"advice"},
+  {text:"Simplicity is prerequisite for reliability.",author:"Edsger W. Dijkstra",tag:"simplicity"},
+  {text:"Deleted code is debugged code.",author:"Jeff Sickel",tag:"humor"},
+  {text:"Programming is thinking, not typing.",author:"Rich Hickey",tag:"wisdom"},
+  {text:"Walking on water and developing software from a specification are easy if both are frozen.",author:"Edward V. Berard",tag:"humor"},
+  {text:"Optimism is an occupational hazard of programming.",author:"Kent Beck",tag:"humor"},
+  {text:"Testing leads to failure, and failure leads to understanding.",author:"Burt Rutan",tag:"wisdom"},
+  {text:"Code never lies, comments sometimes do.",author:"Ron Jeffries",tag:"advice"},
+  {text:"Deleted code is debugged code.",author:"Jeff Sickel",tag:"humor"},
+  {text:"Code is like poetry.",author:"Automattic",tag:"wisdom"},
+  {text:"Debugging is twice as hard as writing the code in the first place.",author:"Brian Kernighan",tag:"humor"},
+  {text:"Make it work, make it right, make it fast.",author:"Kent Beck",tag:"process"},
+  {text:"First, solve the problem. Then, write the code.",author:"John Johnson",tag:"advice"},
+  {text:"Simplicity is the soul of efficiency.",author:"Austin Freeman",tag:"simplicity"},
+  {text:"Experience is the name everyone gives to their mistakes.",author:"Oscar Wilde",tag:"wisdom"},
+  {text:"If debugging is the process of removing software bugs, then programming must be the process of putting them in.",author:"Edsger W. Dijkstra",tag:"humor"},
+  {text:"Before software can be reusable it first has to be usable.",author:"Ralph Johnson",tag:"design"},
+  {text:"The best error message is the one that never shows up.",author:"Thomas Fuchs",tag:"ux"},
+];
 
-  <script>
-    (function(){
-      // Default quotes dataset (extended)
-      const defaultQuotes = [
-        { text: "Programs must be written for people to read, and only incidentally for machines to execute.", author: "Harold Abelson", tag: "readability" },
-        { text: "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.", author: "Martin Fowler", tag: "best-practices" },
-        { text: "First, solve the problem. Then, write the code.", author: "John Johnson", tag: "advice" },
-        { text: "Experience is the name everyone gives to their mistakes.", author: "Oscar Wilde", tag: "wisdom" },
-        { text: "Simplicity is the soul of efficiency.", author: "Austin Freeman", tag: "simplicity" },
-        { text: "If debugging is the process of removing software bugs, then programming must be the process of putting them in.", author: "Edsger W. Dijkstra", tag: "humor" },
-        { text: "Talk is cheap. Show me the code.", author: "Linus Torvalds", tag: "action" },
-        { text: "Make it work, make it right, make it fast.", author: "Kent Beck", tag: "process" },
-        { text: "Before software can be reusable it first has to be usable.", author: "Ralph Johnson", tag: "design" },
-        { text: "The best error message is the one that never shows up.", author: "Thomas Fuchs", tag: "ux" },
-        { text: "Premature optimization is the root of all evil.", author: "Donald Knuth", tag: "performance" },
-        { text: "Debugging is like being the detective in a crime movie where you are also the murderer.", author: "Filipe Fortes", tag: "humor" },
-        { text: "Good code is its own best documentation.", author: "Steve McConnell", tag: "readability" },
-        { text: "If you can't explain it simply, you don't understand it well enough.", author: "Albert Einstein", tag: "clarity" },
-        { text: "Testing leads to failure, and failure leads to understanding.", author: "Burt Rutan", tag: "testing" },
-        { text: "Security is not a product, but a process.", author: "Bruce Schneier", tag: "security" },
-        { text: "Saying 'it works on my machine' is not a valid release strategy.", author: "Unknown", tag: "devops" },
-        { text: "Open source is about collaboration, community and transparency.", author: "Unknown", tag: "open-source" },
-        { text: "Choose simplicity over cleverness.", author: "John Carmack", tag: "simplicity" },
-        { text: "Don't ship crap — iterate.", author: "Paul Graham", tag: "product" },
-        { text: "Every great developer you know got there by solving problems they were unqualified to solve until they actually did it.", author: "Patrick McKenzie", tag: "career" },
-        { text: "Design is not just what it looks like and feels like. Design is how it works.", author: "Steve Jobs", tag: "design" },
-        { text: "The code you write makes a promise to the next person who reads it.", author: "Unknown", tag: "best-practices" },
-        { text: "Automation is good, so long as you know exactly where to put the machine.", author: "Edsger W. Dijkstra", tag: "automation" },
-        { text: "The best way to get a project done faster is to start sooner.", author: "Jim Highsmith", tag: "process" }
-      ];
+let quotes = [...defaultQuotes], index = 0, favorites = [], isAuto=false, autoInterval=null;
 
-      // DOM
-      const quoteTextEl = document.getElementById('quoteText');
-      const quoteAuthorEl = document.getElementById('quoteAuthor');
-      const quoteTagEl = document.getElementById('quoteTag');
-      const prevBtn = document.getElementById('prevBtn');
-      const nextBtn = document.getElementById('nextBtn');
-      const randomBtn = document.getElementById('randomBtn');
-      const addBtn = document.getElementById('addBtn');
-      const autoToggle = document.getElementById('autoToggle');
-      const copyBtn = document.getElementById('copyBtn');
-      const tweetBtn = document.getElementById('tweetBtn');
-      const modal = document.getElementById('modal');
-      const newQuote = document.getElementById('newQuote');
-      const newAuthor = document.getElementById('newAuthor');
-      const newTag = document.getElementById('newTag');
-      const cancelAdd = document.getElementById('cancelAdd');
-      const saveAdd = document.getElementById('saveAdd');
-      const filterInput = document.getElementById('filterInput');
-      const filterBtn = document.getElementById('filterBtn');
-      const clearFilterBtn = document.getElementById('clearFilterBtn');
-      const tagFilters = document.getElementById('tagFilters');
-      const quickList = document.getElementById('quickList');
-      const showAllBtn = document.getElementById('showAllBtn');
-      const clearStorageBtn = document.getElementById('clearStorageBtn');
-      const favoriteBtn = document.getElementById('favoriteBtn');
-      const moreBtn = document.getElementById('moreBtn');
-      const quoteCard = document.getElementById('quoteCard');
-      const filterStatus = document.getElementById('filterStatus');
-      const themeToggle = document.getElementById('themeToggle');
+const quoteText = document.getElementById('quoteText');
+const quoteAuthor = document.getElementById('quoteAuthor');
+const quoteTag = document.getElementById('quoteTag');
+const favoriteBtn = document.getElementById('favoriteBtn');
+const moreBtn = document.getElementById('moreBtn');
+const filterBtn = document.getElementById('filterBtn');
+const filterInput = document.getElementById('filterInput');
+const addBtn = document.getElementById('addBtn');
+const modal = document.getElementById('modal');
+const cancelAdd = document.getElementById('cancelAdd');
+const saveAdd = document.getElementById('saveAdd');
+const newQuote = document.getElementById('newQuote');
+const newAuthor = document.getElementById('newAuthor');
+const newTag = document.getElementById('newTag');
+const quickList = document.getElementById('quickList');
+const showAllBtn = document.getElementById('showAllBtn');
+const clearStorageBtn = document.getElementById('clearStorageBtn');
+const themeToggle = document.getElementById('themeToggle');
 
-      // state
-      let quotes = [];
-      let index = 0;
-      let autoInterval = null;
-      let isAuto = false;
-      let favorites = [];
-      let filteredIndices = null; // when set, only these indices are active for navigation
+function render() {
+  const q = quotes[index];
+  if(!q) return;
+  quoteText.textContent=q.text;
+  quoteAuthor.textContent=q.author ? '— '+q.author:'— Unknown';
+  quoteTag.textContent=q.tag || 'general';
+  favoriteBtn.textContent=favorites.includes(index)?'★ Favorited':'★ Favorite';
+  buildQuickList();
+}
 
-      // helpers
-      function loadQuotes() {
-        try {
-          const local = JSON.parse(localStorage.getItem('quotes_custom') || 'null');
-          const fav = JSON.parse(localStorage.getItem('quotes_fav') || '[]');
-          const storedTheme = localStorage.getItem('quotes_theme');
-          favorites = Array.isArray(fav) ? fav : [];
-          quotes = Array.isArray(local) ? defaultQuotes.concat(local) : defaultQuotes.slice();
-          if (storedTheme) applyTheme(storedTheme);
-        } catch (e) {
-          quotes = defaultQuotes.slice();
-          favorites = [];
-        }
-        buildTagFilters();
-        buildQuickList();
-      }
+function buildQuickList() {
+  quickList.innerHTML='';
+  favorites.slice(-6).reverse().forEach(i=>{
+    const q = quotes[i];
+    if(!q) return;
+    const btn = document.createElement('button');
+    btn.textContent=q.text.length>50?q.text.slice(0,50)+'…':q.text;
+    btn.className='btn secondary';
+    btn.onclick=()=>{index=i;render();}
+    quickList.appendChild(btn);
+  });
+}
 
-      function saveCustomQuotes(arr) {
-        const custom = arr.slice(defaultQuotes.length); // only custom items
-        localStorage.setItem('quotes_custom', JSON.stringify(custom));
-      }
+function toggleFavorite(){
+  const pos=favorites.indexOf(index);
+  if(pos===-1){favorites.push(index);}
+  else{favorites.splice(pos,1);}
+  render();
+  localStorage.setItem('quotes_fav',JSON.stringify(favorites));
+}
 
-      function buildTagFilters() {
-        const tags = Array.from(new Set(quotes.map(q => (q.tag || 'general').toLowerCase()))).sort();
-        tagFilters.innerHTML = '';
-        tags.forEach(t=> {
-          const btn = document.createElement('button');
-          btn.className = 'pill';
-          btn.textContent = t;
-          btn.onclick = () => setFilterByTag(t);
-          tagFilters.appendChild(btn);
-        });
-      }
+function moreLikeThis(){
+  const curTag = quotes[index].tag;
+  const similar = quotes.filter((q,i)=>q.tag===curTag && i!==index);
+  if(similar.length) index = quotes.indexOf(similar[0]);
+  render();
+}
 
-      function buildQuickList() {
-        quickList.innerHTML = '';
-        // If a filter is active show matches; otherwise show favorites or recent few
-        if (Array.isArray(filteredIndices) && filteredIndices.length) {
-          filteredIndices.slice(0, 8).forEach(i => {
-            const q = quotes[i];
-            const li = document.createElement('li');
-            li.className = 'quick-list-item';
-            li.innerHTML = `<span title="${escapeHtml(q.text)}">${truncate(q.text, 80)}</span><button class="btn small-open" data-idx="${i}">Open</button>`;
-            quickList.appendChild(li);
-          });
-        } else {
-          const favs = favorites.slice(-6).reverse();
-          if (favs.length) {
-            favs.forEach(i => {
-              const q = quotes[i];
-              if (!q) return;
-              const li = document.createElement('li');
-              li.className = 'quick-list-item';
-              li.innerHTML = `<span title="${escapeHtml(q.text)}">${truncate(q.text, 80)}</span><button class="btn small-open" data-idx="${i}">Open</button>`;
-              quickList.appendChild(li);
-            });
-          } else {
-            // recent
-            const recent = quotes.slice(-6).reverse();
-            recent.forEach((q, i) => {
-              const idx = quotes.lastIndexOf(q);
-              const li = document.createElement('li');
-              li.className = 'quick-list-item';
-              li.innerHTML = `<span title="${escapeHtml(q.text)}">${truncate(q.text, 80)}</span><button class="btn small-open" data-idx="${idx}">Open</button>`;
-              quickList.appendChild(li);
-            });
-          }
-        }
-        // attach handlers
-        quickList.querySelectorAll('button.small-open').forEach(btn=>{
-          btn.addEventListener('click', (e)=>{
-            const idx = Number(btn.getAttribute('data-idx'));
-            if (!isNaN(idx)) showIndex(idx);
-          });
-        });
-      }
+function filterQuotes(){
+  const term=(filterInput.value||'').toLowerCase();
+  const found = quotes.find(q=>q.text.toLowerCase().includes(term)|| (q.author||'').toLowerCase().includes(term)|| (q.tag||'').toLowerCase().includes(term));
+  if(found) index = quotes.indexOf(found);
+  render();
+}
 
-      function truncate(s, n) { return s.length>n ? s.slice(0,n-1)+'…' : s }
-      function escapeHtml(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;') }
+function showAddModal(){modal.classList.add('show'); newQuote.focus();}
+function closeAddModal(){modal.classList.remove('show'); newQuote.value=''; newAuthor.value=''; newTag.value='';}
+function saveAddQuote(){
+  const text=newQuote.value.trim();
+  if(!text){alert('Enter quote');return;}
+  const author=newAuthor.value.trim();
+  const tag=newTag.value.trim()||'user';
+  quotes.push({text,author,tag});
+  localStorage.setItem('quotes_custom',JSON.stringify(quotes.slice(defaultQuotes.length)));
+  index = quotes.length-1;
+  closeAddModal();
+  render();
+}
 
-      function showIndex(i) {
-        if (typeof i !== 'number' || i < 0 || i >= quotes.length) return;
-        index = i;
-        render();
-      }
+addBtn.onclick=showAddModal;
+cancelAdd.onclick=closeAddModal;
+saveAdd.onclick=saveAddQuote;
+favoriteBtn.onclick=toggleFavorite;
+moreBtn.onclick=moreLikeThis;
+filterBtn.onclick=filterQuotes;
+showAllBtn.onclick=()=>{quotes=[...defaultQuotes,...JSON.parse(localStorage.getItem('quotes_custom')||'[]')];index=0;render();}
+clearStorageBtn.onclick=()=>{localStorage.removeItem('quotes_custom');localStorage.removeItem('quotes_fav');quotes=[...defaultQuotes];index=0;favorites=[];render();}
+themeToggle.onclick=()=>{document.body.classList.toggle('light');}
+document.addEventListener('keydown',e=>{if(e.key==='n'){index=(index+1)%quotes.length;render();} if(e.key==='p'){index=(index-1+quotes.length)%quotes.length;render();} if(e.key==='r'){index=Math.floor(Math.random()*quotes.length);render();} if(e.key==='a'){showAddModal();}});
+render();
+</script>
 
-      function render() {
-        const q = quotes[index];
-        if (!q) return;
-        quoteCard.classList.remove('fly');
-        void quoteCard.offsetWidth;
-        quoteCard.classList.add('fly');
-
-        quoteTextEl.classList.remove('fade-in');
-        void quoteTextEl.offsetWidth; // restart animation
-        quoteTextEl.textContent = q.text;
-        quoteTextEl.classList.add('fade-in');
-
-        quoteAuthorEl.textContent = q.author ? '— ' + q.author : '— Unknown';
-        quoteTagEl.textContent = q.tag || 'general';
-
-        // update favorite button label depending on whether current index is in favorites
-        const favIndex = favorites.indexOf(index);
-        favoriteBtn.textContent = favIndex === -1 ? '★ Favorite' : '★ Favorited';
-
-        // filter status UI
-        if (Array.isArray(filteredIndices)) {
-          filterStatus.style.display = 'block';
-          filterStatus.textContent = `Filter active — ${filteredIndices.length} match(es). Browsing ${filteredIndices.indexOf(index)+1}/${filteredIndices.length}.`;
-        } else {
-          filterStatus.style.display = 'none';
-          filterStatus.textContent = '';
-        }
-      }
-
-      function getActiveIndices() {
-        return Array.isArray(filteredIndices) && filteredIndices.length ? filteredIndices : quotes.map((_,i)=>i);
-      }
-
-      function next() {
-        const active = getActiveIndices();
-        if (!active.length) return;
-        const pos = active.indexOf(index);
-        const nextPos = pos === -1 ? 0 : (pos + 1) % active.length;
-        index = active[nextPos];
-        render();
-      }
-      function prev() {
-        const active = getActiveIndices();
-        if (!active.length) return;
-        const pos = active.indexOf(index);
-        const prevPos = pos === -1 ? 0 : (pos - 1 + active.length) % active.length;
-        index = active[prevPos];
-        render();
-      }
-      function randomize() {
-        const active = getActiveIndices();
-        if (!active.length) return;
-        index = active[Math.floor(Math.random() * active.length)];
-        render();
-      }
-
-      function toggleAuto() {
-        if (isAuto) {
-          clearInterval(autoInterval); autoInterval = null; isAuto = false;
-          autoToggle.textContent = '⏯ Auto';
-        } else {
-          autoInterval = setInterval(next, 4500);
-          isAuto = true;
-          autoToggle.textContent = '⏸ Stop';
-        }
-      }
-
-      function copyCurrent() {
-        const q = quotes[index];
-        const txt = `"${q.text}" — ${q.author || 'Unknown'}`;
-        navigator.clipboard?.writeText(txt).then(()=>{
-          copyBtn.textContent = 'Copied ✓';
-          setTimeout(()=> copyBtn.textContent = '📋 Copy', 1200);
-        }).catch(()=> {
-          alert('Copy failed — your browser may not allow clipboard actions.');
-        });
-      }
-
-      function tweetCurrent() {
-        const q = quotes[index];
-        const text = `"${q.text}" — ${q.author || 'Unknown'}` + ' #devquotes';
-        const url = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text);
-        window.open(url, '_blank', 'noopener');
-      }
-
-      function openAddModal() {
-        modal.classList.add('show');
-        modal.setAttribute('aria-hidden', 'false');
-        // focus after small timeout to ensure visible
-        setTimeout(()=> newQuote.focus(), 50);
-      }
-      function closeAddModal() {
-        modal.classList.remove('show');
-        modal.setAttribute('aria-hidden', 'true');
-        newQuote.value = newAuthor.value = newTag.value = '';
-      }
-
-      function saveAddHandler() {
-        const text = (newQuote.value || '').trim();
-        if (!text) { alert('Please add the quote text.'); newQuote.focus(); return; }
-        const author = (newAuthor.value || '').trim();
-        const tag = (newTag.value || '').trim().toLowerCase() || 'user';
-        const item = { text, author, tag };
-        // push to quotes array 
-        quotes.push(item);
-        saveCustomQuotes(quotes);
-        buildTagFilters();
-        // clear active filters because new tag may influence results. Thatswhy...
-        clearFilter();
-        buildQuickList();
-        closeAddModal();
-        // show newly added
-        index = quotes.length - 1;
-        render();
-      }
-
-      function setFilterByTag(tag) {
-        const lower = tag.toLowerCase();
-        const matched = quotes
-          .map((q,i)=>({q,i}))
-          .filter(x=> (x.q.tag||'general').toLowerCase() === lower)
-          .map(x=>x.i);
-        if (!matched.length) {
-          alert('No quotes found for tag: ' + tag);
-          return;
-        }
-        filteredIndices = matched;
-        index = filteredIndices[0];
-        buildQuickList();
-        render();
-        clearFilterBtn.style.display = 'inline-block';
-      }
-
-      function filterByText() {
-        const q = (filterInput.value || '').toLowerCase().trim();
-        if (!q) { alert('Please enter a search term.'); filterInput.focus(); return; }
-        const matched = quotes
-          .map((item,i)=>({item,i}))
-          .filter(x => {
-            return (x.item.text||'').toLowerCase().includes(q) ||
-                   (x.item.author||'').toLowerCase().includes(q) ||
-                   (x.item.tag||'').toLowerCase().includes(q);
-          })
-          .map(x=>x.i);
-        if (!matched.length) {
-          alert('No quotes matched your search.');
-          return;
-        }
-        filteredIndices = matched;
-        index = filteredIndices[0];
-        buildQuickList();
-        render();
-        clearFilterBtn.style.display = 'inline-block';
-      }
-
-      function clearFilter() {
-        filteredIndices = null;
-        filterInput.value = '';
-        clearFilterBtn.style.display = 'none';
-        buildQuickList();
-        render();
-      }
-
-      function clearLocal() {
-        if (!confirm('Clear all locally saved quotes? This will remove any quotes you added.') ) return;
-        localStorage.removeItem('quotes_custom');
-        localStorage.removeItem('quotes_fav');
-        loadQuotes();
-        index = 0;
-        render();
-        buildQuickList();
-        buildTagFilters();
-      }
-
-      function toggleFavorite() {
-        const pos = favorites.indexOf(index);
-        if (pos === -1) {
-          favorites.push(index);
-        } else {
-          favorites.splice(pos, 1);
-        }
-        localStorage.setItem('quotes_fav', JSON.stringify(favorites));
-        favoriteBtn.textContent = favorites.indexOf(index) === -1 ? '★ Favorite' : '★ Favorited';
-        buildQuickList();
-      }
-
-      function moreLikeThis() {
-        const curTag = (quotes[index].tag || 'general').toLowerCase();
-        const similar = quotes
-          .map((q,i)=>({q,i}))
-          .filter(x => (x.q.tag||'general').toLowerCase() === curTag && x.i !== index)
-          .map(x=>x.i);
-        if (!similar.length) { alert('No similar quotes found.'); return; }
-        // move to next similar
-        filteredIndices = similar;
-        index = filteredIndices[0];
-        buildQuickList();
-        render();
-        clearFilterBtn.style.display = 'inline-block';
-      }
-
-      // theme helpers
-      function applyTheme(t) {
-        document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'dark');
-        themeToggle.textContent = t === 'light' ? '☀️ Theme' : '🌙 Theme';
-        localStorage.setItem('quotes_theme', t);
-      }
-      function toggleTheme() {
-        const current = document.documentElement.getAttribute('data-theme') || 'dark';
-        const next = current === 'light' ? 'dark' : 'light';
-        applyTheme(next);
-      }
-
-      // attach events
-      nextBtn.addEventListener('click', next);
-      prevBtn.addEventListener('click', prev);
-      randomBtn.addEventListener('click', randomize);
-      addBtn.addEventListener('click', openAddModal);
-      autoToggle.addEventListener('click', toggleAuto);
-      copyBtn.addEventListener('click', copyCurrent);
-      tweetBtn.addEventListener('click', tweetCurrent);
-      cancelAdd.addEventListener('click', closeAddModal);
-      saveAdd.addEventListener('click', saveAddHandler);
-      filterBtn.addEventListener('click', filterByText);
-      clearFilterBtn.addEventListener('click', clearFilter);
-      showAllBtn.addEventListener('click', () => { clearFilter(); loadQuotes(); index=0; render(); buildQuickList(); buildTagFilters(); });
-      clearStorageBtn.addEventListener('click', clearLocal);
-      favoriteBtn.addEventListener('click', toggleFavorite);
-      moreBtn.addEventListener('click', moreLikeThis);
-      themeToggle.addEventListener('click', toggleTheme);
-
-      // keyboard shortcuts:
-      // n -> next, p -> prev, r -> random, a -> add, space -> toggle auto
-      // but we MUST not capture space when user is typing in inputs
-      document.addEventListener('keydown', (e) => {
-        const active = document.activeElement;
-        const tag = active && active.tagName ? active.tagName.toUpperCase() : '';
-        const isTyping = tag === 'INPUT' || tag === 'TEXTAREA' || active?.isContentEditable;
-        if (isTyping) {
-          // allow normal typing behavior (including space) when user is focused in an input/textarea
-          if (e.key === 'Enter' && active === filterInput) {
-            e.preventDefault();
-            filterByText();
-          }
-          return;
-        }
-
-        if (e.key === 'n') next();
-        if (e.key === 'p') prev();
-        if (e.key === 'r') randomize();
-        if (e.key === 'a') openAddModal();
-        if (e.code === 'Space') { e.preventDefault(); toggleAuto(); }
-        if (e.key === 'Escape' && modal.classList.contains('show')) { closeAddModal(); }
-      });
-
-      // helpful: when modal is clicked outside, close
-      modal.addEventListener('click', (e)=> {
-        if (e.target === modal) closeAddModal();
-      });
-
-      // allow Enter in filter input to run filter
-      filterInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-          e.preventDefault();
-          filterByText();
-        }
-      });
-
-      // initialize
-      loadQuotes();
-      if (!quotes.length) {
-        quotes = defaultQuotes.slice();
-      }
-      index = 0;
-      render();
-
-      // expose showIndex to quick-list inline buttons if needed
-      window.showIndex = showIndex;
-
-      // utility: if filter active on load, show clear button
-      if (Array.isArray(filteredIndices) && filteredIndices.length) clearFilterBtn.style.display = 'inline-block';
-    })();
-  </script>
 </body>
 </html>
